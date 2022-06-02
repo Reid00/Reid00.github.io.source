@@ -16,7 +16,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'v0.100.0'   # 这里的版本号要与你安装的版本号一致
+          hugo-version: '0.62.2'   # 这里的版本号要与你安装的版本号一致
           # extended: true
 
       - name: Build
@@ -26,7 +26,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # 这里的 ACTIONS_DEPLOY_KEY 则是上面设置 Private Key的变量名
-          external_repository: Reid00/Reid00.github.io.source # Pages 远程仓库 
+          external_repository: Reid00/Reid00.github.io # Pages 远程仓库 
           publish_dir: "./public"
           keep_files: false # remove existing files
           publish_branch: main  # deploying branch
