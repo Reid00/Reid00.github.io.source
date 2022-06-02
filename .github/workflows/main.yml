@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+        with: 
+          submodules: true
+          fetch-depth: 1
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -19,8 +22,7 @@ jobs:
           extended: true
 
       - name: Build
-        working-directory: ./
-        run: hugo --minify --gc
+        run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
