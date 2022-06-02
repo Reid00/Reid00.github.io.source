@@ -12,10 +12,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Update theme
-        # (Optional)If you have the theme added as submodule, you can pull it and use the most updated version
-        run: git submodule update --init --recursive
-
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -23,7 +19,8 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo
+        working-directory: ./
+        run: hugo --minify --gc
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
