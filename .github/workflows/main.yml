@@ -1,32 +1,31 @@
+name: Deploy Hugo Site to Github Pages on Main Branch
+
 on:
   push:
     branches:
-      - 'main'
+      - main
 
-name: build
 jobs:
-  run:
-    runs-on: ubuntu-20.
+  build-deploy:
+    runs-on: ubuntu-latest
     steps:
-      
-      - name: Checkout
+      - name: Check out repository code
         uses: actions/checkout@v2
+        # with:
+        #   submodules: true  # Fetch Hugo themes (true OR recursive)
+        #   fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+        
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: latest  # 这里的版本号要与你安装的版本号一致
+          extended: true
 
-      - name: Set Env
-        run: |
-          echo "HUGO=$(wget -qO- https://api.github.com/repos/gohugoio/hugo/tags | grep 'name' | cut -d\" -f4 | head -1)" >> $GITHUB_ENV
-      - name: Start build
-        run: |
-          wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/tags/${{ env.HUGO }} | jq ".assets[] | {browser_download_url}" -c | jq .browser_download_url -r | grep "Linux-64bit.tar.gz" | grep "extended" | wget -O hugo.tar.gz -i -
-          tar -zxvf hugo.tar.gz
-          rm -rfv hugo.tar.gz LICENSE README.md
-          chmod +x hugo
-          ./hugo
-          rm -rfv hugo
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # 这里的 ACTIONS_DEPLOY_KEY 则是上面设置 Private Key的变量名
           external_repository: Reid00/Reid00.github.io # Pages 远程仓库 
