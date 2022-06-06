@@ -25,8 +25,8 @@ jobs:
           rm -rfv hugo
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # 这里的 ACTIONS_DEPLOY_KEY 则是上面设置 Private Key的变量名
           external_repository: Reid00/Reid00.github.io # Pages 远程仓库 
