@@ -95,7 +95,7 @@ params:
         - name: twitter
           url: "https://twitter.com"
         - name: RsS
-          url: "index.xml"
+          url: "index.html"
 
     # editPost:
     #     URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
