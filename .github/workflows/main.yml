@@ -15,7 +15,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: latest  # 这里的版本号要与你安装的版本号一致
+          hugo-version: "0.59.0"  # 这里的版本号要与你安装的版本号一致
           extended: true
 
       - name: Build
