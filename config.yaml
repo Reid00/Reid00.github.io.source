@@ -1,20 +1,28 @@
-baseURL: "https://reid00.github.io/" # 绑定的域名
-languageCode: zh-cn # en-us
+baseURL: "https://reid00.github.io/"   # 绑定的域名
+languageCode: zh-cn                    # en-us
 title: "Reid's Blog"
-theme: PaperMod # 主题名字，和themes文件夹下的一致
+theme: PaperMod                       # 主题名字，和themes文件夹下的一致
 
 enableInlineShortcodes: true
-enableRobotsTXT: true
+enableRobotsTXT: true                 # 允许爬虫抓取到搜索引擎，建议 true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
-enableEmoji: true
+enableEmoji: true                     # 允许使用 Emoji 表情，建议 true
 pygmentsUseClasses: true
-# googleAnalytics: UA-123-45
+googleAnalytics: UA-123-45             # 谷歌统计
+Copyright: Reid
+
+hasCJKLanguage: true                  # 自动检测是否包含 中文日文韩文 如果文章中使用了很多中文引号的话可以开启
+paginate: 10                          # 首页每页显示的文章数
 
 minify:
     disableXML: true
     # minifyOutput: true
+
+
+defaultContentLanguage: en # 最顶部首先展示的语言页面
+defaultContentLanguageInSubdir: true
 
 languages:
     en:
@@ -26,16 +34,19 @@ languages:
           series: series
         menu:
             main:
-                - name: 归档
+                - name: 🏠主页
+                  url: /
+                  weight: 2
+                - name: ⏱归档
                   url: archives
                   weight: 5
-                - name: 搜索
+                - name: 🔍搜索
                   url: search/
                   weight: 10
-                - name: 标签
+                - name: 🔖标签
                   url: tags/
                   weight: 10
-                - name: 分类
+                - name: 🧩分类
                   url: categories/
                   weight: 10
 
@@ -53,6 +64,7 @@ params:
 
     defaultTheme: auto
     # disableThemeToggle: true
+    DateFormat: "2006-01-02 13:04:05"
     ShowShareButtons: false
     ShowReadingTime: true
     # disableSpecial1stPost: true
@@ -61,8 +73,14 @@ params:
     ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowRssButtonInSectionTermList: true
-    ShowToc: true
-    comments: false
+
+    ShowLastMod: true # 显示文章更新时间
+    
+    ShowToc: true   # 显示目录
+    TocOpen: true   # 自动展开目录
+
+    comments: true
+
     images: ["https://i.loli.net/2021/09/26/3OMGXylm8HUYJ6p.png"]
 
     # profileMode:
@@ -77,13 +95,30 @@ params:
     #           url: archives
     #         - name: Tags
     #           url: tags
+    profileMode:
+        enabled: true
+        title: (〃'▽'〃)
+        subtitle: "🧨学而时习之，不亦说乎？有朋自远方来，不亦乐乎？</br>👏🏼欢迎光临素履(Sulv)的博客</br>👇联系方式"
+        imageUrl: "img/Q.gif"
+        imageTitle: 
+        imageWidth: 150
+        imageHeight: 150
+        buttons:
+        - name: 👨🏻‍💻技术
+            url: posts/tech
+        - name: 📕阅读
+            url: posts/read
+        - name: 🏖生活
+            url: posts/life
+        # - name: 🌹素履的博客
+        #   url: https://www.xyming108.top
 
     homeInfoParams:
         Title: "Hi there \U0001F44B"
         Content: >
             Welcome to My Blog.
 
-            - **Blog** 其实是我个人的一些笔记
+            - **Blog** 是我个人的一些笔记
 
             - 包含Go, Python, 机器学习, KV 存储引擎的一些相关笔记, 方便以后复习
 
