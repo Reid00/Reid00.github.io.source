@@ -1,12 +1,14 @@
 ---
-title: "First"
-date: 2022-06-01T16:30:04+08:00
-lastmod: 2022-06-01T16:30:04+08:00
+title: "Hugo搭建博客并用GitHub部署"
+date: 2022-06-07T17:46:02+08:00
+lastmod: 2022-06-07T17:46:02+08:00
 author: ["Reid"]
 categories: 
-- 
+- hugo
 tags: 
-- 
+- hugo
+- Github Pages
+- Github Action
 series:
 - 
 description: ""
@@ -22,9 +24,10 @@ showbreadcrumbs: true #顶部显示当前路径
 cover:
     image: "https://i.loli.net/2021/09/26/pi3RYQSP12cJmWo.jpg"
     alt: "替换文本"
-    caption: "封面标题"
+    caption: ""
     relative: false
 ---
+
 # 介绍
 
 这是我博客 [Blog](https://Reid00.github.io) 的源仓库。
@@ -109,14 +112,12 @@ Start the built-in live server via “hugo server”.
 <br/>
 
 这些大致作用如下：
-
-archetypes：存放博客的模板，默认提供了一个 default.md 作为所有博客的模板。
-content：顾名思义，存放我们所有的博客正文。
-data：存放一些数据，如 xml、json 等。
-layouts：与博客页面布局相关的内容，如博客网页中的 header、footer 等。
-static：存放静态资源，如图标、图片等。
-themes：主题相关。
-config.toml：站点、主题等相关内容的配置文件，它支持 yaml、toml 和 json 格式，后续将会一直和这个文件打交道。
+- archetypes：存放博客的模板，默认提供了一个 default.md 作为所有博客的模板。
+- data：存放一些数据，如 xml、json 等。
+- layouts：与博客页面布局相关的内容，如博客网页中的 header、footer 等。
+- static：存放静态资源，如图标、图片等。
+- themes：主题相关。
+- config.toml：站点、主题等相关内容的配置文件，它支持 yaml、toml 和 json 格式，后续将会一直和这个文件打交道。
 
 建议config.toml 改为config.yaml 语法看着更舒服点。
 

@@ -11,7 +11,7 @@ buildExpired: false
 enableEmoji: true                     # 允许使用 Emoji 表情，建议 true
 pygmentsUseClasses: true
 googleAnalytics: UA-123-45             # 谷歌统计
-Copyright: Reid
+Copyright:
 
 hasCJKLanguage: true                  # 自动检测是否包含 中文日文韩文 如果文章中使用了很多中文引号的话可以开启
 paginate: 10                          # 首页每页显示的文章数
@@ -34,17 +34,17 @@ languages:
           series: series
         menu:
             main:
-                - name: ⏱归档
+                - name: Archive
                   url: archives
                   weight: 5
-                - name: 🔍搜索
+                - name: Search
                   url: search/
-                  weight: 10
-                - name: 🔖标签
-                  url: tags/
-                  weight: 10
-                - name: 🧩分类
+                  weight: 7
+                - name: Categorys
                   url: categories/
+                  weight: 10
+                - name: Tags
+                  url: tags/
                   weight: 10
 
 outputs:
@@ -61,7 +61,7 @@ params:
 
     defaultTheme: auto
     # disableThemeToggle: true
-    DateFormat: "2006-01-02 13:04:05"
+    DateFormat: "2006-01-02"
     ShowShareButtons: false
     ShowReadingTime: true
     # disableSpecial1stPost: true
