@@ -1,5 +1,6 @@
 ---
 title: "Hugo搭建博客并用GitHub部署"
+subtitle: "build blog"
 date: 2022-06-07T17:46:02+08:00
 lastmod: 2022-06-07T17:46:02+08:00
 author: ["Reid"]
@@ -9,9 +10,11 @@ tags:
 - hugo
 - Github Pages
 - Github Action
-series:
-- 
-description: ""
+keyword:
+- Hugo
+- Blog
+- GitHub
+description: "Build Blog with Hugo and deploy on Github Pages with Github Action"
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: ""
 draft: false # 是否为草稿
@@ -30,7 +33,7 @@ cover:
 
 # 介绍
 
-这是我博客 [Blog](https://Reid00.github.io) 的源仓库。
+这是我博客 [Blog](https://Reid00.github.io) 的地址。
 
 本博客是用[Hugo](https://gohugo.io/) 来生成静态网站。 [Hugo GitHub](https://github.com/gohugoio/hugo) 
 

@@ -74,7 +74,7 @@ params:
     ShowLastMod: true # 显示文章更新时间
     
     ShowToc: true   # 显示目录
-    TocOpen: true   # 自动展开目录
+    TocOpen: false   # 自动展开目录
 
     comments: true
 
@@ -96,13 +96,13 @@ params:
     homeInfoParams:
         Title: "Hi there \U0001F44B"
         Content: >
-            Welcome to My Blog.
+            - **Welcome to My Blog.** 
 
-            - **Blog** 是我个人的一些笔记
+            - **This Blog** 是我个人的一些笔记
 
             - 包含Go, Python, 机器学习, KV 存储引擎的一些相关笔记, 方便以后复习
 
-            - [GitHub主页](https://github.com/Reid00)
+            - 我的[GitHub主页](https://github.com/Reid00)
 
     socialIcons:
         - name: github
@@ -159,6 +159,10 @@ markup:
         lineNos: true
         noClasses: false
         style: monokai
+    tableOfContents:
+        endLevel: 3
+        ordered: false
+        startLevel: 2
 
 privacy:
     vimeo:
