@@ -103,15 +103,15 @@ params:
         imageTitle: 
         imageWidth: 150
         imageHeight: 150
-        buttons:
-        - name: 👨🏻‍💻技术
-            url: posts/tech
-        - name: 📕阅读
-            url: posts/read
-        - name: 🏖生活
-            url: posts/life
-        # - name: 🌹素履的博客
-        #   url: https://www.xyming108.top
+        # buttons:
+        # - name: 👨🏻‍💻技术
+        #     url: posts/tech
+        # - name: 📕阅读
+        #     url: posts/read
+        # - name: 🏖生活
+        #     url: posts/life
+        # # - name: 🌹素履的博客
+        # #   url: https://www.xyming108.top
 
     homeInfoParams:
         Title: "Hi there \U0001F44B"
