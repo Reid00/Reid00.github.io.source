@@ -33,7 +33,7 @@ cover:
 
 # 介绍
 
-这是我博客 [Blog](https://Reid00.github.io) 的地址。
+这是我博客 [Blog](https://Reid00.github.io) 的地址 和 [Github Repositroy](https://github.com/Reid00/Reid00.github.io)。
 
 本博客是用[Hugo](https://gohugo.io/) 来生成静态网站。 [Hugo GitHub](https://github.com/gohugoio/hugo) 
 
