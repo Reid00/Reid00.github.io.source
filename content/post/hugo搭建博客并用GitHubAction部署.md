@@ -1,5 +1,5 @@
 ---
-title: "Hugo搭建博客并用GitHub部署"
+title: "Hugo搭建博客并用GitHubAction部署"
 subtitle: "build blog"
 date: 2022-06-07T17:46:02+08:00
 lastmod: 2022-06-07T17:46:02+08:00
