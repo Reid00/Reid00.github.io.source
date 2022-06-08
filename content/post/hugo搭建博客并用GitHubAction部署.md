@@ -5,9 +5,9 @@ date: 2022-06-07T17:46:02+08:00
 lastmod: 2022-06-07T17:46:02+08:00
 author: ["Reid"]
 categories: 
-- hugo
+- Hugo
 tags: 
-- hugo
+- Hugo
 - Github Pages
 - Github Action
 keyword:
