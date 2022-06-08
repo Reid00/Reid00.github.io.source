@@ -2,6 +2,6 @@
 title: "Archive"
 layout: "archives"
 url: "/archives"
-description: "All posts you can see"
+description: "Here you can see all posts"
 summary: "archives"
 ---

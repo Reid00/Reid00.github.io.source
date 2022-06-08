@@ -22,9 +22,9 @@ hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: true # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示当前路径
 cover:
-    image: ""
+    image: "https://raw.githubusercontent.com/Reid00/image-host/main/20220608/image.5qakcordu0g0.webp"
+    alt: "Utterances logo"
     caption: ""
-    alt: ""
     relative: false
 ---
 
