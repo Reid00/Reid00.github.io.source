@@ -11,7 +11,7 @@ buildExpired: false
 enableEmoji: true                     # 允许使用 Emoji 表情，建议 true
 pygmentsUseClasses: true
 googleAnalytics: UA-123-45             # 谷歌统计
-Copyright: Copyright © [Reid Blog](https://reid00.github.io/) |
+Copyright:
 
 hasCJKLanguage: true                  # 自动检测是否包含 中文日文韩文 如果文章中使用了很多中文引号的话可以开启
 paginate: 10                          # 首页每页显示的文章数
