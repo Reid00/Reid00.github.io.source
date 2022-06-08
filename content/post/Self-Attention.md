@@ -1,14 +1,16 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
-lastmod: {{ .Date }}
+title: "Self Attention"
+date: 2022-06-08T11:35:50+08:00
+lastmod: 2022-06-08T11:35:50+08:00
 author: ["Reid"]
 categories: 
-- Storage
+- Machine Learning
+- 机器学习
 tags: 
-- 
+- Self Attenion
 keyword:
-- Storage
+- Machine Learning
+- 机器学习
 description: ""
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: ""
@@ -25,3 +27,7 @@ cover:
     alt: ""
     relative: false
 ---
+
+Refer ：https://blog.csdn.net/shenfuli/article/details/106523650
+
+Multi-Head Attention: https://blog.csdn.net/qq_37394634/article/details/102679096

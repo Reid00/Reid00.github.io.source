@@ -15,7 +15,7 @@ keyword:
 - Blog
 - GitHub
 description: "Build Blog with Hugo and deploy on Github Pages with Github Action"
-weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
+weight: 1 # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: ""
 draft: false # 是否为草稿
 comments: true
@@ -25,8 +25,8 @@ hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: true # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示当前路径
 cover:
-    image: "https://i.loli.net/2021/09/26/pi3RYQSP12cJmWo.jpg"
-    alt: "替换文本"
+    image: "https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg"
+    alt: "hugo logo"
     caption: ""
     relative: false
 ---
