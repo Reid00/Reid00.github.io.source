@@ -173,16 +173,16 @@ CN2 GT线路白天基本上没有多大差别，老左测试后发现晚上相�
 
 2. 方案推荐
 
-   |            方案            | 内存 | CPU  | 硬盘  | 流量/月 |  带宽   |            价格            |           机房            |                           购买                            |
-   | :------------------------: | :--: | :--: | :---: | :-----: | :-----: | :------------------------: | :-----------------------: | :-------------------------------------------------------: |
-   |      CN2 **(最便宜)**      | 1GB  | 1核  | 20GB  |   1TB   |  1Gbps  |       **$49.99/年**        |      DC8 CN2 DC3 CN2      |    [购买](https://bwh88.net/aff.php?aff=23114&pid=57)     |
-   |            CN2             | 2GB  | 1核  | 40GB  |   2TB   |  1Gbps  |   $52.99/半年 $99.99/年    |      DC8 CN2 DC3 CN2      |    [购买](https://bwh88.net/aff.php?aff=23114&pid=58)     |
-   | **CN2 GIA-E** **(最推荐)** | 1GB  | 2核  | 20GB  |   1TB   | 2.5Gbps | **$65.99/半年 $119.99/年** | DC6 CN2 GIA-E DC9 CN2 GIA | [购买](https://bwh88.net/aff.php?aff=23114&pid=87) (缺货) |
-   |       **CN2 GIA-E**        | 2GB  | 3核  | 40GB  |   2TB   | 2.5Gbps |   $69.99/季度 $229.99/年   | DC6 CN2 GIA-E DC9 CN2 GIA |    [购买](https://bwh88.net/aff.php?aff=23114&pid=88)     |
-   |          CN2 GIA           | 4GB  | 4核  | 80GB  |   3TB   |  1Gbps  |    $32.99/月 $339.99/年    |        DC9 CN2 GIA        | [购买](https://bwh88.net/aff.php?aff=23114&pid=74) (缺货) |
-   |          CN2 GIA           | 8GB  | 6核  | 160GB |   5TB   |  1Gbps  |    $62.99/月 $645.99/年    |        DC9 CN2 GIA        | [购买](https://bwh88.net/aff.php?aff=23114&pid=75) (缺货) |
-   |           **HK**           | 2GB  | 2核  | 40GB  |  0.5TB  |  1Gbps  |    $89.99/月 $899.99/年    |         香港 PCCW         |    [购买](https://bwh88.net/aff.php?aff=23114&pid=95)     |
-   |           **HK**           | 4GB  | 4核  | 80GB  |   1TB   |  1Gbps  |   $155.99/月 $1559.99/年   |         香港 PCCW         |    [购买](https://bwh88.net/aff.php?aff=23114&pid=96)     |
+   |            方案            | 内存  |  CPU  | 硬盘  | 流量/月 |  带宽   |            价格            |           机房            |                           购买                            |
+   | :------------------------: | :---: | :---: | :---: | :-----: | :-----: | :------------------------: | :-----------------------: | :-------------------------------------------------------: |
+   |      CN2 **(最便宜)**      |  1GB  |  1核  | 20GB  |   1TB   |  1Gbps  |       **$49.99/年**        |      DC8 CN2 DC3 CN2      |    [购买](https://bwh88.net/aff.php?aff=23114&pid=57)     |
+   |            CN2             |  2GB  |  1核  | 40GB  |   2TB   |  1Gbps  |   $52.99/半年 $99.99/年    |      DC8 CN2 DC3 CN2      |    [购买](https://bwh88.net/aff.php?aff=23114&pid=58)     |
+   | **CN2 GIA-E** **(最推荐)** |  1GB  |  2核  | 20GB  |   1TB   | 2.5Gbps | **$65.99/半年 $119.99/年** | DC6 CN2 GIA-E DC9 CN2 GIA | [购买](https://bwh88.net/aff.php?aff=23114&pid=87) (缺货) |
+   |       **CN2 GIA-E**        |  2GB  |  3核  | 40GB  |   2TB   | 2.5Gbps |   $69.99/季度 $229.99/年   | DC6 CN2 GIA-E DC9 CN2 GIA |    [购买](https://bwh88.net/aff.php?aff=23114&pid=88)     |
+   |          CN2 GIA           |  4GB  |  4核  | 80GB  |   3TB   |  1Gbps  |    $32.99/月 $339.99/年    |        DC9 CN2 GIA        | [购买](https://bwh88.net/aff.php?aff=23114&pid=74) (缺货) |
+   |          CN2 GIA           |  8GB  |  6核  | 160GB |   5TB   |  1Gbps  |    $62.99/月 $645.99/年    |        DC9 CN2 GIA        | [购买](https://bwh88.net/aff.php?aff=23114&pid=75) (缺货) |
+   |           **HK**           |  2GB  |  2核  | 40GB  |  0.5TB  |  1Gbps  |    $89.99/月 $899.99/年    |         香港 PCCW         |    [购买](https://bwh88.net/aff.php?aff=23114&pid=95)     |
+   |           **HK**           |  4GB  |  4核  | 80GB  |   1TB   |  1Gbps  |   $155.99/月 $1559.99/年   |         香港 PCCW         |    [购买](https://bwh88.net/aff.php?aff=23114&pid=96)     |
 
 点击上面的“直达通道”或者购买链接进入购买页。（**其他套餐，请在下方表格自行选择，并分别点击表格中的购买链接进入。否则会出现无法看到验证码的问题**）
 
