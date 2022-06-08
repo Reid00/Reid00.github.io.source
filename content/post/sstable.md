@@ -395,4 +395,5 @@ leveldb采用引用计数维护每个文件的引用情况，当一个文件的�
 
 sstable文件为只读的，因此cache中的数据永远于sstable文件中的数据保持一致。
 
-[originalLink](
+---
+参考: https://leveldb-handbook.readthedocs.io/zh/latest/sstable.html
