@@ -33,8 +33,18 @@ cover:
 
 并通过 [GitHub Action](https://docs.github.com/cn/actions) 来自动化部署到 [GitHub Pages](https://docs.github.com/cn/pages)。
 
-<br/>
+## 给 post 名称添加日期
+因为默认情况下，`hugo new posts/filename.md` 是没有日期的，不方便排序查看，所以写了个`new_post_with_date.go` 和 `new_post.sh` 生成post。
+两者都可以生成`20220610-test.md` 文件，`new_post_with_date.go` 已经编译好了二进制文件`date.exe` 可直接使用。
 
+- new_post.sh
+  - 只能在posts/目录下生成md文件 不可以指定参数和`--kind`
+  - 可以直接修改`new_post.sh` 里面的hugo 命令修改文件路径和模板
+- new_post_with_date.go
+  - 可以指定--kind, md 的子文件夹
+  - 使用方法，编译后，用./date -h 查看
+
+<br/>
 ## 搭建步骤
 
 ### 创建代码仓库

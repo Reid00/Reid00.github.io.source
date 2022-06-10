@@ -1,5 +1,5 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "{{ .TranslationBaseName | replaceRE "^[0-9]{8}-" "" | replaceRE "-" " " | title }}"
 date: {{ .Date }}
 lastmod: {{ .Date }}
 author: ["Reid"]
@@ -13,7 +13,7 @@ keyword:
 - 机器学习
 description: ""
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
-slug: ""
+slug: {{ .TranslationBaseName | replaceRE "^[0-9]{8}-" ""  }}
 draft: false # 是否为草稿
 comments: true
 showToc: true # 显示目录
