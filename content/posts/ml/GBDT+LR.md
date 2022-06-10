@@ -1,5 +1,5 @@
 ---
-title: "GBDT+LR"
+title: "GBDT and LR"
 date: 2022-06-08T14:10:06+08:00
 lastmod: 2022-06-08T14:10:06+08:00
 author: ["Reid"]
@@ -69,7 +69,7 @@ LR作为一个线性模型，以概率形式输出结果，在工业上得到了
 
 然后，这个![X_{gbdt}](https://math.jianshu.com/math?formula=X_%7Bgbdt%7D),会作为输入，送进LR模型，最终输出结果
 
-![img](https://upload-images.jianshu.io/upload_images/3376541-89f6b255e21fe677.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/568/format/webp)
+![img](https://raw.githubusercontent.com/Reid00/image-host/main/20220610/image.kq9wdk6lmdc.webp)
 
 模型大致如图所示。上图中由两棵子树，分别有3和2个叶子节点。对于一个样本x，最终可以落入第一棵树的某一个叶子和第二棵树的某一个叶子，得到两个独热编码的结果例如
  [0,0,1],[1,0]组合得[0,0,1,1,0]输入到LR模型最后输出结果。
