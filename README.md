@@ -43,8 +43,19 @@ cover:
 - new_post_with_date.go
   - 可以指定--kind, md 的子文件夹
   - 使用方法，编译后，用./date -h 查看
+  ```sh
+    $ ./date.exe -h
+    Usage of C:\Hugo\sites\Reid00.github.io.source\date.exe:
+    -f string
+          markdown parent folder name (default "posts")
+    -k string
+          post template (default "default")
+    -n string
+          post file name
+    ```
 
 <br/>
+
 ## 搭建步骤
 
 ### 创建代码仓库
