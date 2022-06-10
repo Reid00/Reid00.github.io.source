@@ -55,8 +55,8 @@ cover:
 
 创建完毕后你的账户下将存在以下两个代码仓库：
 
-- ==https://github.com/<YourName>/<YourName>.github.io (公开的)==
-- ==https://github.com/<YourName>/pages-hugo-source (私有的)==
+- `https://github.com/<YourName>/<YourName>.github.io (公开的)`
+- `https://github.com/<YourName>/pages-hugo-source (私有的)`
   
   <br/>
 
