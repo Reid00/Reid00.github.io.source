@@ -181,6 +181,11 @@ CMD /bin/bash
   ```shell
   docker build -f dockerfile路径 -t mycentos:v1.3 .
   ```
+- Push
+```sh
+docker push registry仓库中/name:version
+docker push harbor.ld-hadoop.com/nebula/supply:v7
+```
 
 - 运行
 
