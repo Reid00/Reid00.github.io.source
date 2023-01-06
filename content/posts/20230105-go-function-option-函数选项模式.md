@@ -229,7 +229,7 @@ func AllowedDomains(domains ...string) CollectorOption
 不过 Uber 的 Go 语言编程规范中提到该模式时，建议定义一个 Option 接口，而不是 Option 函数类型。该 Option 接口有一个未导出的方法，然后通过一个未导出的 options 结构来记录各选项。
 ## Option Interface
 ```go
-
+// 需要添加的配置参数字段放到options field 中
 type options struct {
   cache  bool
   logger *zap.Logger
@@ -239,35 +239,44 @@ type Option interface {
   apply(*options)
 }
 
+// 新定义一个类型，用来重置options 里面对应的字段
 type cacheOption bool
 
+// apply 将类型c 的值，赋给options 对应的field
 func (c cacheOption) apply(opts *options) {
   opts.cache = bool(c)
 }
 
+// with开头新建一个 上面定义的类型
 func WithCache(c bool) Option {
   return cacheOption(c)
 }
 
+// 新定义的类型中，包含了需要重中options 的logger field
 type loggerOption struct {
   Log *zap.Logger
 }
 
+// apply 将新类型的Log field 给options 的对应field
 func (l loggerOption) apply(opts *options) {
   opts.logger = l.Log
 }
 
+// with开头新建一个 上面定义的类型
 func WithLogger(log *zap.Logger) Option {
   return loggerOption{Log: log}
 }
 
 // Open creates a connection.
 func Open(addr string, opts ...Option) (*Connection, error) {
+
+// 新建一个options 的配置类型
   options := options{
     cache:  defaultCache,
     logger: zap.NewNop(),
   }
 
+// 遍历Option 接口类型，调用apply 方法，将o的field 赋值给options 配置
   for _, o := range opts {
     o.apply(&options)
   }
