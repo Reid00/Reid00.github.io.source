@@ -5,7 +5,6 @@ lastmod: 2022-12-16T11:04:27+08:00
 author: ["Reid"]
 categories: 
 - Spark
-- Join
 tags: 
 - Spark
 - Join

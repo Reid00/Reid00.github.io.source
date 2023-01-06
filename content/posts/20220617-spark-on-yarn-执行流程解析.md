@@ -4,17 +4,15 @@ date: 2022-06-17T11:24:08+08:00
 lastmod: 2022-06-17T11:24:08+08:00
 author: ["Reid"]
 categories: 
-- unified analytics engine
 - spark
 tags: 
 - spark
 - yarn
 keyword:
-- unified analytics engine
 - 执行流程
 - spark
 - yarn
-description: "unified analytics engine"
+description: "spark"
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: spark 执行流程解析
 draft: false # 是否为草稿

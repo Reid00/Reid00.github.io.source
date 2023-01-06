@@ -4,14 +4,14 @@ date: 2022-06-08T14:22:29+08:00
 lastmod: 2022-06-08T14:22:29+08:00
 author: ["Reid"]
 categories: 
-- vscode
+- VsCode
 tags: 
-- vscode
+- VsCode
 - remote
 - dev
 - server
 keyword:
-- vscode
+- VsCode
 description: ""
 weight:  # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: ""
