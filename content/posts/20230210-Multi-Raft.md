@@ -35,12 +35,12 @@ cover:
 ---
 
 # Mulit Raft Group
-
 通过对 Raft 协议的描述我们知道：用户在对一组 Raft 系统进行更新操作时必须先经过 Leader，再由 Leader 同步给大多数 Follower。而在实际运用中，一组 Raft 的 Leader 往往存在单点的流量瓶颈，流量高便无法承载，同时每个节点都是全量数据，所以会受到节点的存储限制而导致容量瓶颈，无法扩展。
 
 `Mulit Raft Group` 正是通过把整个数据从横向做切分，分为多个 Region 来解决磁盘瓶颈，然后每个 Region 都对应有独立的 Leader 和一个或多个 Follower 的 Raft 组进行横向扩展，此时系统便有多个写入的节点，从而分担写入压力，图如下：
 ![multi-raft](https://cdn.staticaly.com/gh/Reid00/image-host@main/20230210/image.4whi69ph2q00.webp)
 
+具体细节可以参考TiKV 的[文章](https://cn.pingcap.com/blog/tidb-internal-1)
 
 # Multi-Raft需要解决的一些核心问题：
 1. 数据何如分片
