@@ -59,6 +59,7 @@ params:
     description: "Reid's Personal Notes -- https://github.com/Reid00"
     author: Reid
     # author: ["Me", "You"] # multiple authors
+    summary: "Reid's Notes -- https://github.com/Reid00"
 
     defaultTheme: auto
     # disableThemeToggle: true

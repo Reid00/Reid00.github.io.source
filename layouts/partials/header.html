@@ -1,1 +1,8 @@
-<meta name="referrer" content="no-referrer" />
+<head>
+    <meta
+    name="description"
+    content="{{ if .Params.summary }}{{ .Params.summary }}{{ else if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}Reid's Github Notes{{ end }}"
+  />
+
+    <meta name="referrer" content="no-referrer" />
+</head>
