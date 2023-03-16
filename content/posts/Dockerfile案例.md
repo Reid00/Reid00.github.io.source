@@ -177,7 +177,7 @@ CMD /bin/bash
 ```
 
 - 构建 build
-
+注意： 最后面有个path 此处用的. 代表当前路径
   ```shell
   docker build -f dockerfile路径 -t mycentos:v1.3 .
   ```
@@ -185,6 +185,50 @@ CMD /bin/bash
 ```sh
 docker push registry仓库中/name:version
 docker push harbor.ld-hadoop.com/nebula/supply:v7
+```
+如果docker push 出现Auth 相关的错误，安装下面方式解决:
+```sh
+➜  contact_radar_space_incre git:(master) ✗ docker push harbor.ld-hadoop.com/nebula/backup_radar_incre:v1
+The push refers to a repository [harbor.ld-hadoop.com/nebula/backup_radar_incre]
+770f8dde0bf3: Preparing 
+de824f01aabe: Preparing 
+e68ba2bf9675: Preparing 
+aa4c808c19f6: Preparing 
+8ba9f690e8ba: Preparing 
+3e607d59ef9f: Waiting 
+1e18e7e1fcc2: Waiting 
+c3a0d593ed24: Waiting 
+26a504e63be4: Waiting 
+8bf42db0de72: Waiting 
+31892cc314cb: Waiting 
+11936051f93b: Waiting 
+unauthorized: unauthorized to access repository: nebula/backup_radar_incre, action: push: unauthorized to access repository: nebula/backup_radar_incre, action: push
+
+➜  contact_radar_space_incre git:(master) ✗ mkdir /root/.docker
+➜  contact_radar_space_incre git:(master) ✗ vim /root/.docker/config.json
+# 添加下面的认真json
+# {
+#         "auths": {
+#                 "harbor.ld-hadoop.com": {
+#                         "auth": "bGVvbjpraWxsanVoZQ=="
+#                 }
+#         }
+# }
+➜  contact_radar_space_incre git:(master) ✗ docker push harbor.ld-hadoop.com/nebula/backup_radar_incre:v1
+The push refers to a repository [harbor.ld-hadoop.com/nebula/backup_radar_incre]
+770f8dde0bf3: Pushed 
+de824f01aabe: Pushed 
+e68ba2bf9675: Pushed 
+aa4c808c19f6: Pushed 
+8ba9f690e8ba: Pushed 
+3e607d59ef9f: Pushed 
+1e18e7e1fcc2: Pushed 
+c3a0d593ed24: Pushed 
+26a504e63be4: Pushed 
+8bf42db0de72: Pushed 
+31892cc314cb: Pushed 
+11936051f93b: Pushed 
+v1: digest: sha256:2cb5bf1b68e635556f27a4c2371f513c41fe0d89de06d9898fb0e47cef036cc4 size: 2846
 ```
 
 - 运行
