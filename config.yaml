@@ -99,7 +99,7 @@ params:
         Content: >
             - **Welcome to My Blog.** 
 
-            - **This Blog** 是我个人的一些笔记
+            - **Those Blogs** 是我个人的一些笔记
 
             - 包含Go, Python, 机器学习, KV 存储引擎的一些相关笔记, 方便以后复习
 
