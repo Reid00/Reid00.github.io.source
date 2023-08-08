@@ -1,5 +1,5 @@
 baseURL: "https://reid00.github.io/"   # 绑定的域名
-languageCode: en-us                    # en-us  zh-cn
+languageCode: zh-cn                    # en-us  zh-cn
 title: "Reid's Blog"
 theme: PaperMod                       # 主题名字，和themes文件夹下的一致
 
@@ -21,6 +21,10 @@ minify:
     # minifyOutput: true
 
 
+permalinks: #浏览器链接显示方式
+  post: "/:title/"
+  # post: "/:year/:month/:day/:title/"
+
 defaultContentLanguage: en # 最顶部首先展示的语言页面
 defaultContentLanguageInSubdir: true
 preserveTaxonomyNames: true
@@ -36,7 +40,7 @@ languages:
         menu:
             main:
                 - name: Archive
-                  url: archives
+                  url: archives/
                   weight: 5
                 - name: Search
                   url: search/
