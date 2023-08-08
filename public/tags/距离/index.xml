@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>距离 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E8%B7%9D%E7%A6%BB/</link>
+    <description>Recent content in 距离 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:21 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E8%B7%9D%E7%A6%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常见距离的介绍</title>
+      <link>https://reid00.github.io/posts/ml/%E5%B8%B8%E8%A7%81%E8%B7%9D%E7%A6%BB%E7%9A%84%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:21 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/%E5%B8%B8%E8%A7%81%E8%B7%9D%E7%A6%BB%E7%9A%84%E4%BB%8B%E7%BB%8D/</guid>
+      <description>机器学习常见距离介绍 1. 欧式距离 2. 曼哈顿距离 我们可以定义曼哈顿距离的正式意义为L1-距离或城市区块距离，也就是在欧几里得空间的固定直角坐标系上两点所形成的线段对轴产生的投影的距离总和。例如在平面上，坐标（x1, y1）的点P1与坐标（x2, y2）的点P2的曼哈顿距离为：，要注意的是，曼哈顿距离依赖座标系统的转度，而非系统在座标轴上的平移或映射。 通俗来讲，想象你在曼哈顿要从一个十字路口开车到另外一个十字路口，驾驶距离是两点间的直线距离吗？显然不是，除非你能穿越大楼。而实际驾驶距离就是这个“曼哈顿距离”，此即曼哈顿距离名称的来源， 同时，曼哈顿距离也称为城市街区距离(City Block distance)。
+3. 切比雪夫距离 若二个向量或二个点p 、and q，其座标分别为p1,p2 4. 闵可夫斯基距离(Minkowski Distance) 闵氏距离不是一种距离，而是一组距离的定义.
+(1) 闵氏距离的定义 两个n维变量a(x11,x12,…,x1n)与 b(x21,x22,…,x2n)间的闵可夫斯基距离定义为： 其中p是一个变参数。 当p=1时，就是曼哈顿距离 当p=2时，就是欧氏距离 当p→∞时，就是切比雪夫距离 根据变参数的不同，闵氏距离可以表示一类的距离。
+5. 标准化欧氏距离 (Standardized Euclidean distance ) 标准化欧氏距离是针对简单欧氏距离的缺点而作的一种改进方案。标准欧氏距离的思路：既然数据各维分量的分布不一样，那先将各个分量都“标准化”到均值、方差相等。至于均值和方差标准化到多少，先复习点统计学知识。
+假设样本集X的数学期望或均值(mean)为m，标准差(standard deviation，方差开根)为s，那么X的“标准化变量”X*表示为：(X-m）/s，而且标准化变量的数学期望为0，方差为1。
+即，样本集的标准化过程(standardization)用公式描述就是： 标准化后的值 = ( 标准化前的值 － 分量的均值 ) /分量的标准差　经过简单的推导就可以得到两个n维向量a(x11,x12,…,x1n)与 b(x21,x22,…,x2n)间的标准化欧氏距离的公式：　如果将方差的倒数看成是一个权重，这个公式可以看成是一种加权欧氏距离(Weighted Euclidean distance)。
+6. 马氏距离(Mahalanobis Distance) 有M个样本向量X1~Xm，协方差矩阵记为S，均值记为向量μ，则其中样本向量X到u的马氏距离表示为： (协方差矩阵中每个元素是各个矢量元素之间的协方差Cov(X,Y)，Cov(X,Y) = E{ [X-E(X)] [Y-E(Y)]}，其中E为数学期望）
+而其中向量Xi与Xj之间的马氏距离定义为：
+若协方差矩阵是单位矩阵（各个样本向量之间独立同分布）,则公式就成了： 也就是欧氏距离了。　若协方差矩阵是对角矩阵，公式变成了标准化欧氏距离。
+马氏距离的优缺点：量纲无关，排除变量之间的相关性的干扰。 「微博上的seafood高清版点评道：原来马氏距离是根据协方差矩阵演变，一直被老师误导了，怪不得看Killian在05年NIPS发表的LMNN论文时候老是看到协方差矩阵和半正定，原来是这回事」 7.巴氏距离（Bhattacharyya Distance） 在统计中，Bhattacharyya距离测量两个离散或连续概率分布的相似性。它与衡量两个统计样品或种群之间的重叠量的Bhattacharyya系数密切相关。Bhattacharyya距离和Bhattacharyya系数以20世纪30年代曾在印度统计研究所工作的一个统计学家A.</description>
+    </item>
+    
+  </channel>
+</rss>

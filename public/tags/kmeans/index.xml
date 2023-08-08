@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KMeans on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/kmeans/</link>
+    <description>Recent content in KMeans on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:17 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/kmeans/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KMeans聚类分析</title>
+      <link>https://reid00.github.io/posts/ml/kmeans%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:17 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/kmeans%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/</guid>
+      <description>聚类与分类的区别 分类：类别是已知的，通过对已知分类的数据进行训练和学习，找到这些不同类的特征，再对未分类的数据进行分类。属于监督学习。
+聚类：事先不知道数据会分为几类，通过聚类分析将数据聚合成几个群体。聚类不需要对数据进行训练和学习。属于无监督学习。
+关于监督学习和无监督学习，这里给一个简单的介绍：是否有监督，就看输入数据是否有标签，输入数据有标签，则为有监督学习，否则为无监督学习。
+k-means 聚类 聚类算法有很多种，K-Means 是聚类算法中的最常用的一种，算法最大的特点是简单，好理解，运算速度快，但是只能应用于连续型的数据，并且一定要在聚类前需要手工指定要分成几类。
+K-Means 聚类算法的大致意思就是“物以类聚，人以群分”：
+首先输入 k 的值，即我们指定希望通过聚类得到 k 个分组； 从数据集中随机选取 k 个数据点作为初始大佬（质心）； 对集合中每一个小弟，计算与每一个大佬的距离，离哪个大佬距离近，就跟定哪个大佬。 这时每一个大佬手下都聚集了一票小弟，这时候召开选举大会，每一群选出新的大佬（即通过算法选出新的质心）。 如果新大佬和老大佬之间的距离小于某一个设置的阈值（表示重新计算的质心的位置变化不大，趋于稳定，或者说收敛），可以认为我们进行的聚类已经达到期望的结果，算法终止。 如果新大佬和老大佬距离变化很大，需要迭代3~5步骤。 用Python 代码实现 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 # dataSet样本点,k 簇的个数 # disMeas距离量度，默认为欧几里得距离 # createCent,初始点的选取 def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent): m = shape(dataSet)[0] #样本数 clusterAssment = mat(zeros((m,2))) #m*2的矩阵 centroids = createCent(dataSet, k) #初始化k个中心 clusterChanged = True while clusterChanged: #当聚类不再变化 clusterChanged = False for i in range(m): minDist = inf; minIndex = -1 for j in range(k): #找到最近的质心 distJI = distMeas(centroids[j,:],dataSet[i,:]) if distJI &amp;lt; minDist: minDist = distJI; minIndex = j if clusterAssment[i,0] !</description>
+    </item>
+    
+  </channel>
+</rss>

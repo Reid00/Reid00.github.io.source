@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Optimize on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/optimize/</link>
+    <description>Recent content in Optimize on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:51 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/optimize/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spark 最佳实践指南</title>
+      <link>https://reid00.github.io/posts/computation/spark-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:51 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</guid>
+      <description>简介 总体上来说，Spark的流程和MapReduce的思想很类似，只是实现的细节方面会有很多差异。 首先澄清2个容易被混淆的概念：
+Spark是基于内存计算的框架 Spark比Hadoop快100倍 第一个问题是个伪命题。 任何程序都需要通过内存来执行，不论是单机程序还是分布式程序。 Spark会被称为 基于内存计算的框架 ，主要原因在于其和之前的分布式计算框架很大不同的一点是，Shuffle的数据集不需要通过读写磁盘来进行交换，而是直接通过内存交换数据得到。效率比读写磁盘的MapReduce高上好多倍，所以很多人称之为 基于内存的计算框架，其实更应该称为 基于内存进行数据交换的计算框架。
+至于第二个问题，有同学说，Spark官网 就是这么介绍的呀，Spark run workloads 100x faster than Hadoop。
+这点没什么问题，但是请注意官网用来比较的 workload 是 Logistic regresstion。 注意到了吗，这是一个需要反复迭代计算的机器学习算法，Spark是非常擅长在这种需要反复迭代计算的场景中（见问题1），而Hadoop MapReduce每次迭代都需要读写一次HDFS。以己之长，击人之短 差距可向而知。
+如果都只是跑一个简单的过滤场景的 workload，那么性能差距不会有这么多，总体上是一个级别的耗时。
+所以千万不要在任何场景中都说 Spark是基于内存的计算、Spark比Hadoop快100倍，这都是不严谨的说法。
+逻辑执行图 1. 弹性分布式数据集 RDD是Spark中的核心概念，直译过来叫做 弹性分布式数据集。
+所有的RDD要么是从外部数据源创建的，要么是从其他RDD转换过来的。RDD有两种产生方式：
+从外部数据源中创建 从一个RDD中转换而来 你可以把它当做一个List，但是这个List里面的元素是分布在不同机器上的，对List的所有操作都将被分发到不同的机器上执行。 RDD就是我们需要操作的数据集，并解决了 数据在哪儿 这个问题。 有了数据之后，我们需要定义在数据集上的操作（即业务逻辑）。 回想一下我们之前经历的流程：
+一开始我们什么都没有，只有分散在各个服务器上的日志数据，并且通过一个简单的脚本遍历连接服务器，执行相关的统计逻辑 我们接触了MapReduce计算框架，并定义了Map和Reduce的函数接口来实现计算逻辑，从而用户不比关心计算逻辑拆分与分发等底层问题 虽然MapReduce已经解决了我们分布式计算的需求，但是其编程范式只有map和reduce两个接口，使用不灵活。
+在Spark中，RDD提供了比MapReduce编程模型丰富得多的编程接口，如：filter、map、groupBy等都可以直接调用实现（这些操作本质上也划分为Map和Reduce两种类型）。
+现在，统计PV的例子中实现计算逻辑的伪代码可以这么写：
+1 2 3 4 5 6 7 8 9 10 // 从外部数据源中创建RDD，即读取日志数据 val rdd = sc.textFile(&amp;#34;...&amp;#34;) // 解析日志中的ip rdd.map(...) // 根据ip分组 .</description>
+    </item>
+    
+  </channel>
+</rss>

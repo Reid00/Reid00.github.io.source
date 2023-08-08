@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/git/</link>
+    <description>Recent content in Git on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:01 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git 安装和多用户配置</title>
+      <link>https://reid00.github.io/posts/other/git-%E5%AE%89%E8%A3%85%E5%92%8C%E5%A4%9A%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:01 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/other/git-%E5%AE%89%E8%A3%85%E5%92%8C%E5%A4%9A%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE/</guid>
+      <description>安装 Windows 此处下载 双击exe 一直下一步安装
+Linux Linux 默认安装的Git 版本一般为1.8*, 可以通过以下方式升级
+首先，把老版本的 Git 卸掉。 1 2 sudo yum -y remove git sudo yum -y remove git-* 添加 End Point 到 CentOS 7 仓库 yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm yum -y install git check version git version 配置Git Set your name. git config --global user.name &amp;quot;Your Name&amp;quot; Set your email address. git config --global user.email &amp;quot;user@exmample.com&amp;quot; Verify the settings. git config --list Git 配置SSH key 连接Github HTTPS URL 和 SSH URL 在使用 git clone 项目时，可以使用仓库的 HTTPS URL 也可以 使用 SSH URL HTTPS URL，例如：https://github.</description>
+    </item>
+    
+  </channel>
+</rss>

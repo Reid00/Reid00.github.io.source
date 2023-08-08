@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github Action on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/github-action/</link>
+    <description>Recent content in Github Action on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:03 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/github-action/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo搭建博客并用GitHubAction部署</title>
+      <link>https://reid00.github.io/posts/other/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:03 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/other/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/</guid>
+      <description>介绍 这是我博客 Blog 的地址 和 Github Repositroy。
+本博客是用Hugo 来生成静态网站。 Hugo GitHub
+并通过 GitHub Action 来自动化部署到 GitHub Pages。
+搭建步骤 创建代码仓库 首先按照文档创建 GitHub Pages 站点。该仓库可见性必须是 Public。
+另外创建一个仓库用来存放 Hugo 的源文件，名称随意，这里假设仓库名叫 .github.io.source。建议将仓库可见性设置成 Private 以保护好你的源代码。
+创建完毕后你的账户下将存在以下两个代码仓库：
+https://github.com/&amp;lt;YourName&amp;gt;/&amp;lt;YourName&amp;gt;.github.io (公开的)
+https://github.com/&amp;lt;YourName&amp;gt;/&amp;lt;YourName&amp;gt;.github.io.source(私有的)
+生成Hugo 网站 安装Hugo For Windows
+到Github Release 下载最新版本，用hugo version 或者extended version (部分主题需要extended version 才能使用)
+安装步骤参考官方提供
+在C盘新建Hugo/sites 目录用于 生成hugo 项目
+在C盘新建Hugo/bin 目录，用来存放上面解压后的hugo 二进制文件
+添加C:\Hugo\bin 到系统环境变量中
+添加完成后，在cmd 或者其他console 中输入hugo version检查 环境变量是否添加成功。
+出现下面的表示成功。注意：环境变量添加成功后，记得重启console
+For mac/linux
+可以只用用命令下载，此处不多讲了。
+Hugo 生成网站 在/c/Hugo/sites 目录下使用命令hugo new site siteName生成网站</description>
+    </item>
+    
+  </channel>
+</rss>

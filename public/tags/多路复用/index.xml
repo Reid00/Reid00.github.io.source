@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多路复用 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/</link>
+    <description>Recent content in 多路复用 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 Aug 2023 11:53:15 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IO 多路复用</title>
+      <link>https://reid00.github.io/posts/os_network/io-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/</link>
+      <pubDate>Fri, 04 Aug 2023 11:53:15 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/os_network/io-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/</guid>
+      <description>最基本的 Socket 模型 要想客户端和服务器能在网络中通信，那必须得使用 Socket 编程，它是进程间通信里比较特别的方式，特别之处在于它是可以跨主机间通信。
+Socket 的中文名叫作插口，咋一看还挺迷惑的。事实上，双方要进行网络通信前，各自得创建一个 Socket，这相当于客户端和服务器都开了一个“口子”，双方读取和发送数据的时候，都通过这个“口子”。这样一看，是不是觉得很像弄了一根网线，一头插在客户端，一头插在服务端，然后进行通信。
+创建 Socket 的时候，可以指定网络层使用的是 IPv4 还是 IPv6，传输层使用的是 TCP 还是 UDP。
+UDP 的 Socket 编程相对简单些，这里我们只介绍基于 TCP 的 Socket 编程。
+服务器的程序要先跑起来，然后等待客户端的连接和数据，我们先来看看服务端的 Socket 编程过程是怎样的。
+服务端首先调用 socket() 函数，创建网络协议为 IPv4，以及传输协议为 TCP 的 Socket ，接着调用 bind() 函数，给这个 Socket 绑定一个 IP 地址和端口，绑定这两个的目的是什么？
+绑定端口的目的：当内核收到 TCP 报文，通过 TCP 头里面的端口号，来找到我们的应用程序，然后把数据传递给我们。 绑定 IP 地址的目的：一台机器是可以有多个网卡的，每个网卡都有对应的 IP 地址，当绑定一个网卡时，内核在收到该网卡上的包，才会发给我们； 绑定完 IP 地址和端口后，就可以调用 listen() 函数进行监听，此时对应 TCP 状态图中的 listen，如果我们要判定服务器中一个网络程序有没有启动，可以通过 netstat 命令查看对应的端口号是否有被监听。
+服务端进入了监听状态后，通过调用 accept() 函数，来从内核获取客户端的连接，如果没有客户端连接，则会阻塞等待客户端连接的到来。
+那客户端是怎么发起连接的呢？客户端在创建好 Socket 后，调用 connect() 函数发起连接，该函数的参数要指明服务端的 IP 地址和端口号，然后万众期待的 TCP 三次握手就开始了。</description>
+    </item>
+    
+  </channel>
+</rss>

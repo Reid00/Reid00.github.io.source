@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>索引 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E7%B4%A2%E5%BC%95/</link>
+    <description>Recent content in 索引 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:06 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E7%B4%A2%E5%BC%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySql索引介绍</title>
+      <link>https://reid00.github.io/posts/storage/mysql%E7%B4%A2%E5%BC%95%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:06 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/storage/mysql%E7%B4%A2%E5%BC%95%E4%BB%8B%E7%BB%8D/</guid>
+      <description>什么是索引，索引的作用 当我们要在新华字典里查某个字（如「先」）具体含义的时候，通常都会拿起一本新华字典来查，你可以先从头到尾查询每一页是否有「先」这个字，这样做（对应数据库中的全表扫描）确实能找到，但效率无疑是非常低下的，更高效的方相信大家也都知道，就是在首页的索引里先查找「先」对应的页数，然后直接跳到相应的页面查找，这样查询时候大大减少了，可以为是 O(1)。
+数据库中的索引也是类似的，通过索引定位到要读取的页，大大减少了需要扫描的行数，能极大的提升效率，简而言之，索引主要有以下几个作用:
+即上述所说，索引能极大地减少扫描行数 索引可以帮助服务器避免排序和临时表 索引可以将随机 IO 变成顺序 IO MySQL中索引的存储类型有两种：BTREE和HASH，具体和表的存储引擎相关；
+MyISAM和InnoDB存储引擎只支持BTREE索引，MEMORY/HEAP存储引擎可以支持HASH和BTREE索引。
+第一点上文已经解释了，我们来看下第二点和第三点
+先来看第二点，假设我们不用索引，试想运行如下语句
+1 select * from user order by age desc 则 MySQL 的流程是这样的，扫描所有行，把所有行加载到内存后，再按 age 排序生成一张临时表，再把这表排序后将相应行返回给客户端，更糟的，如果这张临时表的大小大于 tmp_table_size 的值（默认为 16 M），内存临时表会转为磁盘临时表，性能会更差，如果加了索引，索引本身是有序的 ，所以从磁盘读的行数本身就是按 age 排序好的，也就不会生成临时表，就不用再额外排序 ，无疑提升了性能。
+再来看随机 IO 和顺序 IO。先来解释下这两个概念。
+相信不少人应该吃过旋转火锅，服务员把一盘盘的菜放在旋转传输带上，然后等到这些菜转到我们面前，我们就可以拿到菜了，假设装一圈需要 4 分钟，则最短等待时间是 0（即菜就在你跟前），最长等待时间是 4 分钟（菜刚好在你跟前错过），那么平均等待时间即为 2 分钟，假设我们现在要拿四盘菜，这四盘菜随机分配在传输带上，则可知拿到这四盘菜的平均等待时间是 8 分钟（随机 IO），如果这四盘菜刚好紧邻着排在一起，则等待时间只需 2 分钟（顺序 IO）。
+上述中传输带就类比磁道，磁道上的菜就类比扇区（sector）中的信息，磁盘块（block）是由多个相邻的扇区组成的，是操作系统读取的最小单元，这样如果信息能以 block 的形式聚集在一起，就能极大减少磁盘 IO 时间,这就是顺序 IO 带来的性能提升，下文中我们将会看到 B+ 树索引就起到这样的作用。
+如图示：多个扇区组成了一个 block，如果要读的信息都在这个 block 中，则只需一次 IO 读
+而如果信息在一个磁道中, 分散地分布在各个扇区中，或者分布在不同磁道的扇区上（寻道时间是随机IO主要瓶颈所在），将会造成随机 IO，影响性能。</description>
+    </item>
+    
+    <item>
+      <title>MySql索引优化</title>
+      <link>https://reid00.github.io/posts/storage/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:06 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/storage/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</guid>
+      <description>数据库表结构：
+1 2 3 4 5 6 7 8 9 create table user ( id int primary key, name varchar(20), sex varchar(5), index(name) )engine=innodb; select id,name where name=&amp;#39;shenjian&amp;#39; select id,name,sex where name=&amp;#39;shenjian&amp;#39; 多查询了一个属性，为何检索过程完全不同？
+什么是回表查询？
+什么是索引覆盖？
+如何实现索引覆盖？
+哪些场景，可以利用索引覆盖来优化SQL？
+一、什么是回表查询？ 这先要从InnoDB的索引实现说起，InnoDB有两大类索引：
+聚集索引(clustered index) 普通索引(secondary index) **InnoDB聚集索引和普通索引有什么差异？
+**
+InnoDB聚集索引的叶子节点存储行记录，因此， InnoDB必须要有，且只有一个聚集索引：
+（1）如果表定义了PK，则PK就是聚集索引；
+（2）如果表没有定义PK，则第一个not NULL unique列是聚集索引；
+（3）否则，InnoDB会创建一个隐藏的row-id作为聚集索引；
+画外音：所以PK查询非常快，直接定位行记录。
+InnoDB普通索引的叶子节点存储主键值。
+画外音：注意，不是存储行记录头指针，MyISAM的索引叶子节点存储记录指针。
+举个栗子，不妨设有表：
+t(id PK, name KEY, sex, flag);
+画外音：id是聚集索引，name是普通索引。
+表中有四条记录：
+1, shenjian, m, A
+3, zhangsan, m, A</description>
+    </item>
+    
+  </channel>
+</rss>

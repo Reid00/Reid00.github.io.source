@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Random Forest on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/random-forest/</link>
+    <description>Recent content in Random Forest on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:26 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/random-forest/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>随机森林（回归树）模型</title>
+      <link>https://reid00.github.io/posts/ml/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E5%9B%9E%E5%BD%92%E6%A0%91%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:26 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E5%9B%9E%E5%BD%92%E6%A0%91%E6%A8%A1%E5%9E%8B/</guid>
+      <description>调参 ★ 在 scikit-learn 中，Random Forest（以下简称RF）的分类类是 RandomForestClassifier，回归类是 RandomForestRegressor。
+RF 需要调参的参数也包括两部分，第一部分是 Bagging 框架的参数，第二部分是 CART 决策树的参数。下面我们就对这些参数做一个介绍。
+RF 框架参数 首先我们关注于 RF 的 Bagging 框架的参数。这里可以和 GBDT 对比来学习。GBDT 的框架参数比较多，重要的有最大迭代器个数，步长和子采样比例，调参起来比较费力。但是 RF 则比较简单，这是因为 bagging 框架里的各个弱学习器之间是没有依赖关系的，这减小的调参的难度。换句话说，达到同样的调参效果，RF 调参时间要比 GBDT 少一些。
+下面我来看看 RF 重要的 Bagging 框架的参数，由于 RandomForestClassifier 和 RandomForestRegressor 参数绝大部分相同，这里会将它们一起讲，不同点会指出。
+n_estimators：也就是弱学习器的最大迭代次数，或者说最大的弱学习器的个数。一般来说 n_estimators 太小，容易欠拟合，n_estimators 太大，计算量会太大，并且 n_estimators 到一定的数量后，再增大 n_estimators 获得的模型提升会很小，所以一般选择一个适中的数值。默认是 100 。
+oob_score：即是否采用袋外样本来评估模型的好坏。默认识 False 。个人推荐设置为 True ，因为袋外分数反应了一个模型拟合后的泛化能力。
+criterion: 即 CART 树做划分时对特征的评价标准。分类模型和回归模型的损失函数是不一样的。分类 RF 对应的 CART 分类树默认是基尼系数 gini ，另一个可选择的标准是信息增益。回归 RF 对应的 CART 回归树默认是均方差 mse ，另一个可以选择的标准是绝对值差 mae 。一般来说选择默认的标准就已经很好的。</description>
+    </item>
+    
+  </channel>
+</rss>

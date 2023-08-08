@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yarn on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/yarn/</link>
+    <description>Recent content in yarn on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:50 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/yarn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spark on Yarn 执行流程解析</title>
+      <link>https://reid00.github.io/posts/computation/spark-on-yarn-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:50 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-on-yarn-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</guid>
+      <description>简介 当一个Spark应用提交到集群上运行时,应用架构包含了两个部分:
+Driver Program（资源申请和调度Job执行） Executors（运行Job中Task任务和缓存数据），两个都是JVM Process进程 Driver程序运行的位置可以通过–deploy-mode 来指定:
+Driver指的是The process running the main() function of the application and creating the SparkContext 运行应用程序的main()函数并创建SparkContext的进程
+client: 表示Driver运行在提交应用的Client上(默认) cluster: 表示Driver运行在集群中(Standalone：Worker，YARN：NodeManager) cluster和client模式最最本质的区别是：Driver程序运行在哪里。 企业实际生产环境中使用cluster 为主要模式。 1. Client(客户端)模式 DeployMode为Client，表示应用Driver Program运行在提交应用Client主机上。 示意图: 1 2 3 4 5 6 7 8 9 10 11 SPARK_HOME=/export/server/spark ${SPARK_HOME}/bin/spark-submit \ --master yarn \ --deploy-mode client \ --driver-memory 512m \ --executor-memory 512m \ --num-executors 1 \ --total-executor-cores 2 \ --class org.apache.spark.examples.SparkPi \ ${SPARK_HOME}/examples/jars/spark-examples_2.11-2.4.5.jar \ 10 2.</description>
+    </item>
+    
+  </channel>
+</rss>

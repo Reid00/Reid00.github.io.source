@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Self Attenion on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/self-attenion/</link>
+    <description>Recent content in Self Attenion on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:18 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/self-attenion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self Attention</title>
+      <link>https://reid00.github.io/posts/ml/self-attention/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:18 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/self-attention/</guid>
+      <description>Refer ：https://blog.csdn.net/shenfuli/article/details/106523650
+Multi-Head Attention: https://blog.csdn.net/qq_37394634/article/details/102679096</description>
+    </item>
+    
+  </channel>
+</rss>

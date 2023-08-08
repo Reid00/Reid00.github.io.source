@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LSM on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/lsm/</link>
+    <description>Recent content in LSM on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:04 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/lsm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LSM Tree</title>
+      <link>https://reid00.github.io/posts/storage/lsm-tree/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:04 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/storage/lsm-tree/</guid>
+      <description>简介LSM Tree MySQL、etcd 等存储系统都是面向读多写少场景的，其底层大都采用 B-Tree 及其变种数据结构。而 LSM-Tree 则解决了另一个应用场景——写多读少时面临的问题。在面对亿级的海量数据的存储和检索的场景下，我们通常选择强力的 NoSQL 数据库，如 Hbase、RocksDB 等，它们的文件组织方式，都是仿照 LSM-Tree 实现的。 reference
+LSM-Tree 全称是 Log Structured Merge Tree，是一种分层、有序、面向磁盘的数据结构，其核心思想是充分利用磁盘的顺序写性能要远高于随机写性能这一特性，将批量的随机写转化为一次性的顺序写。
+从上图可以直观地看出，磁盘的顺序访问速度至少比随机 I/O 快三个数量级，甚至顺序访问磁盘比随机访问主内存还要快。这意味着要尽可能避免随机 I/O 操作，顺序访问非常值得我们去探讨与设计。
+LSM-Tree 围绕这一原理进行设计和优化，通过消去随机的更新操作来达到这个目的，以此让写性能达到最优，同时为那些长期具有高更新频率的文件提供低成本的索引机制，减少查询时的开销。
+Two-Component LSM-Tree LSM-Tree 可以由两个或多个类树的数据结构组件构成，本小节我们先介绍较为简单的两组件情况。 两组件 LSM-Tree（Two-Component LSM-Tree）在内存中有一个 C0 组件，它可以是 AVL 或 SkipList 等结构，所有写入首先写到 C0 中。而磁盘上有一个 C1 组件，当 C0 组件的大小达到阈值时，就需要进行 Rolling Merge，将内存中的内容合并到 C1 中。两组件 LSM-Tree 的写操作流程如下：
+当有写操作时，会先将数据追加写到日志文件中，以备必要时恢复； 然后将数据写入位于内存的 C0 组件，通过某种数据结构保持 Key 有序； 内存中的数据定时或按固定大小刷新到磁盘，更新操作只写到内存，并不更新磁盘上已有文件； 随着写操作越来越多，磁盘上积累的文件也越来越多，这些文件不可写但有序，所以我们定时对文件进行合并（Compaction）操作，消除冗余数据，减少文件数量。 类似于普通的日志写入方式，这种数据结构的写入，全部都是以Append的模式追加，不存在删除和修改。对于任何应用来说，那些会导致索引值发生变化的数据更新都是繁琐且耗时的，但是这样的更新却可以被 LSM-Tree 轻松地解决，将该更新操作看做是一个删除操作加上一个插入操作。
+C1 组件是为顺序性的磁盘访问优化过的，可以是 B-Tree 一类的数据结构（LevelDB 中的实现是 SSTable），所有的节点都是 100% 填充，为了有效利用磁盘，在根节点之下的所有的单页面节点都会被打包放到连续的多页面磁盘块（Multi-Page Block）上。对于 Rolling Merge 和长区间检索的情况将会使用 Multi-Page Block I/O，这样就可以有效减少磁盘旋臂的移动；而在匹配性的查找中会使用 Single-Page I/O，以最小化缓存量。通常根节点只有一个单页面，而其它节点使用 256KB 的 Multi-Page Block。</description>
+    </item>
+    
+  </channel>
+</rss>

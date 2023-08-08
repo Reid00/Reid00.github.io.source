@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LN on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/ln/</link>
+    <description>Recent content in LN on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:20 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/ln/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常用Normalization方法的总结与思考</title>
+      <link>https://reid00.github.io/posts/ml/%E5%B8%B8%E7%94%A8normalization%E6%96%B9%E6%B3%95%E7%9A%84%E6%80%BB%E7%BB%93%E4%B8%8E%E6%80%9D%E8%80%83/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:20 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/%E5%B8%B8%E7%94%A8normalization%E6%96%B9%E6%B3%95%E7%9A%84%E6%80%BB%E7%BB%93%E4%B8%8E%E6%80%9D%E8%80%83/</guid>
+      <description>简介 常用的Normalization方法主要有：Batch Normalization（BN，2015年）、Layer Normalization（LN，2016年）、Instance Normalization（IN，2017年）、Group Normalization（GN，2018年）。它们都是从激活函数的输入来考虑、做文章的，以不同的方式对激活函数的输入进行 Norm 的。
+我们将输入的 feature map shape 记为**[N, C, H, W]**，其中N表示batch size，即N个样本；C表示通道数；H、W分别表示特征图的高度、宽度。这几个方法主要的区别就是在：
+BN是在batch上，对N、H、W做归一化，而保留通道 C 的维度。BN对较小的batch size效果不好。BN适用于固定深度的前向神经网络，如CNN，不适用于RNN；
+LN在通道方向上，对C、H、W归一化，主要对RNN效果明显；
+IN在图像像素上，对H、W做归一化，用在风格化迁移；
+GN将channel分组，然后再做归一化。
+每个子图表示一个特征图，其中N为批量，C为通道，（H，W）为特征图的高度和宽度。通过蓝色部分的值来计算均值和方差，从而进行归一化。
+如果把特征图比喻成一摞书，这摞书总共有 N 本，每本有 C 页，每页有 H 行，每行 有W 个字符。
+BN 求均值时，相当于把这些书按页码一一对应地加起来（例如第1本书第36页，第2本书第36页&amp;hellip;&amp;hellip;），再除以每个页码下的字符总数：N×H×W，因此可以把 BN 看成求“平均书”的操作（注意这个“平均书”每页只有一个字），求标准差时也是同理。
+LN 求均值时，相当于把每一本书的所有字加起来，再除以这本书的字符总数：C×H×W，即求整本书的“平均字”，求标准差时也是同理。
+IN 求均值时，相当于把一页书中所有字加起来，再除以该页的总字数：H×W，即求每页书的“平均字”，求标准差时也是同理。
+GN 相当于把一本 C 页的书平均分成 G 份，每份成为有 C/G 页的小册子，求每个小册子的“平均字”和字的“标准差”。
+参考:
+https://mp.weixin.qq.com/s/dDMPBYjPeilivSA8J8W7lA https://zhuanlan.zhihu.com/p/72589565 </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ShardedKV on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/shardedkv/</link>
+    <description>Recent content in ShardedKV on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:58 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/shardedkv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20230214 MIT6.824 2022 Lab4 ShardedKV</title>
+      <link>https://reid00.github.io/posts/storage/20230214-mit6.824-2022-lab4-shardedkv/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:58 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/storage/20230214-mit6.824-2022-lab4-shardedkv/</guid>
+      <description>ShardedKV 介绍 有关 shardkv，其可以算是一个 multi-raft 的实现，只是缺少了物理节点的抽象概念。在实际的生产系统中，不同 raft 组的成员可能存在于一个物理节点上，而且一般情况下都是一个物理节点拥有一个状态机，不同 raft 组使用不同地命名空间或前缀来操作同一个状态机。基于此，下文所提到的的节点都代指 raft 组的某个成员，而不代指某个物理节点。比如节点宕机代指 raft 组的某个成员被 kill 掉，而不是指某个物理节点宕机，从而可能影响多个 raft 的成员。
+在本实验中，我们将构建一个带分片的KV存储系统，即一组副本组上的键。每一个分片都是KV对的子集，例如，所有以“a”开头的键可能是一个分片，所有以“b”开头的键可能是另一个分片。 也可以用range 或者Hash 之后分区。 分片的原因是性能。每个replica group只处理几个分片的 put 和 get，并且这些组并行操作；因此，系统总吞吐量（每单位时间的投入和获取）与组数成比例增加。
+我们的整个系统有两个基本组件：shard controller 和 shard group。整个系统有一个 controller 和多个 group，controller 单独一个 raft 集群，每一个 shard group 是由 kvraft 实例构成的集群。shard controller 负责调度，客户端向 shard controller 发送请求，controller 会根据配置(config)来告知客户端服务这个 key 的是哪个 group。 每个 group 负责部分 shard。
+1 2 3 4 5 type Config struct { Num int // config number, version also Shards [NShards]int // shard -&amp;gt; gid Groups map[int][]string // gid -&amp;gt; servers[] } 三个参数分别对应的版本的配置号，分片所对应的组(Group)信息（实验中的分片为10个），每个组对应的服务器映射名称列表（也就是组信息）。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>词向量 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E8%AF%8D%E5%90%91%E9%87%8F/</link>
+    <description>Recent content in 词向量 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:19 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E8%AF%8D%E5%90%91%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Word2vec</title>
+      <link>https://reid00.github.io/posts/ml/word2vec/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:19 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/word2vec/</guid>
+      <description>Word2vec 介绍 Word2Vec是google在2013年推出的一个NLP工具，它的特点是能够将单词转化为向量来表示。首先，word2vec可以在百万数量级的词典和上亿的数据集上进行高效地训练；其次，该工具得到的训练结果——词向量（word embedding），可以很好地度量词与词之间的相似性。随着深度学习（Deep Learning）在自然语言处理中应用的普及，很多人误以为word2vec是一种深度学习算法。其实word2vec算法的背后是一个浅层神经网络(有一个隐含层的神经元网络)。另外需要强调的一点是，word2vec是一个计算word vector的开源工具。当我们在说word2vec算法或模型的时候，其实指的是其背后用于计算word vector的CBOW模型和Skip-gram模型。很多人以为word2vec指的是一个算法或模型，这也是一种谬误。
+用词向量来表示词并不是Word2Vec的首创，在很久之前就出现了。最早的词向量采用One-Hot编码，又称为一位有效编码，每个词向量维度大小为整个词汇表的大小，对于每个具体的词汇表中的词，将对应的位置置为1。转化为N维向量。
+采用One-Hot编码方式来表示词向量非常简单，但缺点也是显而易见的，一方面我们实际使用的词汇表很大，经常是百万级以上，这么高维的数据处理起来会消耗大量的计算资源与时间。另一方面，One-Hot编码中所有词向量之间彼此正交，没有体现词与词之间的相似关系。
+Word2vec 是 Word Embedding 方式之一，属于 NLP 领域。他是将词转化为「可计算」「结构化」的向量的过程。本文将讲解 Word2vec 的原理和优缺点。
+什么是 Word2vec ？ 什么是 Word Embedding ？ 在说明 Word2vec 之前，需要先解释一下 Word Embedding。 它就是将「不可计算」「非结构化」的词转化为「可计算」「结构化」的向量。
+这一步解决的是”将现实问题转化为数学问题“，是人工智能非常关键的一步。 将现实问题转化为数学问题只是第一步，后面还需要求解这个数学问题。所以 Word Embedding 的模型本身并不重要，重要的是生成出来的结果——词向量。因为在后续的任务中会直接用到这个词向量。
+什么是 Word2vec ？ Word2vec 是 Word Embedding 的方法之一。他是 2013 年由谷歌的 Mikolov 提出了一套新的词嵌入方法。
+Word2vec 在整个 NLP 里的位置可以用下图表示： Word2vec 的 2 种训练模式 CBOW(Continuous Bag-of-Words Model)和Skip-gram (Continuous Skip-gram Model)，是Word2vec 的两种训练模式。CBOW适合于数据集较小的情况，而Skip-Gram在大型语料中表现更好。下面简单做一下解释：
+词向量训练的预处理步骤：
+1. 对输入的文本生成一个词汇表，每个词统计词频，按照词频从高到低排序，取最频繁的V个词，构成一个词汇表。每个词存在一个one-hot向量，向量的维度是V，如果该词在词汇表中出现过，则向量中词汇表中对应的位置为1，其他位置全为0。如果词汇表中不出现，则向量为全02. 将输入文本的每个词都生成一个one-hot向量，此处注意保留每个词的原始位置，因为是上下文相关的3. 确定词向量的维数NCBOW 通过上下文来预测当前值。相当于一句话中扣掉一个词，让你猜这个词是什么。 CBOW的处理步骤：</description>
+    </item>
+    
+  </channel>
+</rss>

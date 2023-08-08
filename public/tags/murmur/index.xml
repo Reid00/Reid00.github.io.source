@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MurMur on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/murmur/</link>
+    <description>Recent content in MurMur on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:59 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/murmur/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang MurMur3</title>
+      <link>https://reid00.github.io/posts/langs_linux/golang-murmur3/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:59 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/golang-murmur3/</guid>
+      <description>哈希 哈希（Hash）也称为散列，是把任意长度的输入通过哈希算法变换为固定长度的输出，这个输出值也就是散列值。
+哈希表是根据键值对（key value）而直接进行访问的数据结构，通过将键值对映射到表中一个位置来访问记录，以加快查询速度。映射函数又称为散列函数，存放记录的数组叫做哈希表。
+如果两个输入串的哈希函数的值相同则发生了碰撞（Collision），既然把任意较长字符串转化为固定长度且较短的字符串，因此必有一个输出串对应多个输入串，碰撞是必然存在的。这种碰撞又称为哈希冲突。
+散列函数 哈希算法是一种广义的算法，也可以认为是一种思想，使用哈希算法可提高存储空间的利用率和数据查询效率。
+哈希函数又称为散列函数，采用散列算法。 哈希函数是一种从任何一种数据中创建小的数字“指纹”的方法。 哈希函数将数据打乱混合，重新创建一个叫做散列值的“指纹”。 哈希函数会将消息或数据压缩成摘要，使得数据量变小，将数据的格式固定下来。 Go 接口 Golang的hash包提供多种散列算法，比如crc32/64, adler32, fnv&amp;hellip;
+1 2 3 4 5 6 7 type Hash interface{ io.Writer //嵌入io.Writer接口，向执行中的hash加入更多数据。 Sum(b []byte) []byte//将当前hash追加到字节数组b后面，不会改变当前hash状态。 Reset()//重置hash到初始化状态 Size() int//返回hash结果返回的字节数 BlockSize() int//返回hash的集成块大小，为提高效率，Write方法传入的字节数最好是block size的倍数。 } MD5 MD5消息摘要算法，是一种被广泛使用的密码散列函数，可以产出一个128位（16子节）的散列值。
+MD5已被证实无法防止碰撞，已经不算是很安全的算法，因此不适用于安全性认证，比如SSL公开密钥认证或数字签名等用途。
+对于需要高度安全性的数据，一般建议改用其他算法，比如SHA256。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 input := &amp;#34;123456&amp;#34; hash := md5.New() //创建散列值 n, err := hash.Write([]byte(input)) //写入待处理字节 if err !</description>
+    </item>
+    
+  </channel>
+</rss>

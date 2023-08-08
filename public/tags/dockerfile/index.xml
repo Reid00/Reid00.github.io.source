@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dockerfile on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/dockerfile/</link>
+    <description>Recent content in Dockerfile on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:01 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/dockerfile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dockerfile案例</title>
+      <link>https://reid00.github.io/posts/langs_linux/dockerfile%E6%A1%88%E4%BE%8B/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:01 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/dockerfile%E6%A1%88%E4%BE%8B/</guid>
+      <description>一、DockerHub 官网链接 https://hub.docker.com/
+二、Dockerfile 关键字 注意: dockerfile 的关键字必须都是大写才能使用
+FROM
+指定基础镜像，当前新镜像是基于哪个镜像的。其中，scratch是个空镜像，这个镜像是虚拟的概念,并不实际存在,它表示一个空白的镜像，当前镜像没有依赖于其他镜像
+1 FROM scratch MAINTAINTER
+镜像维护者的姓名和邮箱地址
+1 MAINTAINER Sixah &amp;lt;sixah@163.com&amp;gt; RUN
+容器构建时需要运行的命令
+1 RUN echo &amp;#39;Hello, Docker!&amp;#39; EXPOSE
+当前容器对外暴露出的端口
+1 EXPOSE 8080 注意：
+-p 和 expose 区别
+-p 80:8080
+外部80 端口转向 向外暴露是 8080 端口的 Docker 容器。如果只写 -p 80 ，那么当作是 -p 80:80。也就是说，容器之间可以访问该 暴露8080端口的容器，其他用户也可以访问
+exposes 80
+​ 表示 容器之间可以访问该 暴露80端口的容器，但是其他用户不可以可以访问。这样其实就是做到了 封闭。
+WORKDIR
+指定在创建容器后，终端默认登陆进来的工作目录，一个落脚点
+1 WORKDIR /home/ ENV
+用来在构建镜像过程中设置环境变量
+1 ENV MY_PATH /usr/mytest 这个环境变量可以在后续的任何RUN指令中使用，这就如同在命令前面指定了环境变量前缀一样;当然，也可以在其他指令中直接使用这些环境变量，比如：WORKDIR $MY_PATH</description>
+    </item>
+    
+  </channel>
+</rss>

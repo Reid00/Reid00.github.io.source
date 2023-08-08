@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>L2 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/l2/</link>
+    <description>Recent content in L2 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:22 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/l2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最常考的正则问题L1L2</title>
+      <link>https://reid00.github.io/posts/ml/%E6%9C%80%E5%B8%B8%E8%80%83%E7%9A%84%E6%AD%A3%E5%88%99%E9%97%AE%E9%A2%98l1l2/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:22 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/%E6%9C%80%E5%B8%B8%E8%80%83%E7%9A%84%E6%AD%A3%E5%88%99%E9%97%AE%E9%A2%98l1l2/</guid>
+      <description>正则化也是校招中常考的题目之一，在去年的校招中，被问到了多次：
+1、过拟合的解决方式有哪些，l1和l2正则化都有哪些不同，各自有什么优缺点(爱奇艺) 2、L1和L2正则化来避免过拟合是大家都知道的事情，而且我们都知道L1正则化可以得到稀疏解，L2正则化可以得到平滑解，这是为什么呢？ 3、L1和L2有什么区别，从数学角度解释L2为什么能提升模型的泛化能力。（美团） 4、L1和L2的区别，以及各自的使用场景（头条）
+接下来，咱们就针对上面的几个问题，进行针对性回答！
+Link: https://mp.weixin.qq.com/s/t4vRBZXhc0LBST8WGzftgg</description>
+    </item>
+    
+    <item>
+      <title>L1L2正则</title>
+      <link>https://reid00.github.io/posts/ml/l1l2%E6%AD%A3%E5%88%99/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:18 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/l1l2%E6%AD%A3%E5%88%99/</guid>
+      <description>概念 L0：计算非零个数，用于产生稀疏性，但是在实际研究中很少用，因为L0范数很难优化求解，是一个NP-hard问题，因此更多情况下我们是使用L1范数 L1：计算绝对值之和，用以产生稀疏性，因为它是L0范式的一个最优凸近似，容易优化求解 L2：计算平方和再开根号，L2范数更多是防止过拟合，并且让优化求解变得稳定很快速（这是因为加入了L2范式之后，满足了强凸）。
+L1范数(Lasso Regularization)：向量中各个元素绝对值的和。
+L2范数(Ridge Regression)：向量中各元素平方和再求平方根。
+作用 L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择
+L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合
+L1正则化是在代价函数后面加上 L2正则化是在代价函数后面增加了
+两者都起到一定的过拟合作用，两者都对应一定的先验知识，L1对应拉普拉斯分布，L2对应高斯分布，L1偏向于参数稀疏性，L2偏向于参数分布较为稠。</description>
+    </item>
+    
+  </channel>
+</rss>

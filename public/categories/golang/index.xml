@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/categories/golang/</link>
+    <description>Recent content in Golang on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:59 +0800</lastBuildDate><atom:link href="https://reid00.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang MurMur3</title>
+      <link>https://reid00.github.io/posts/langs_linux/golang-murmur3/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:59 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/golang-murmur3/</guid>
+      <description>哈希 哈希（Hash）也称为散列，是把任意长度的输入通过哈希算法变换为固定长度的输出，这个输出值也就是散列值。
+哈希表是根据键值对（key value）而直接进行访问的数据结构，通过将键值对映射到表中一个位置来访问记录，以加快查询速度。映射函数又称为散列函数，存放记录的数组叫做哈希表。
+如果两个输入串的哈希函数的值相同则发生了碰撞（Collision），既然把任意较长字符串转化为固定长度且较短的字符串，因此必有一个输出串对应多个输入串，碰撞是必然存在的。这种碰撞又称为哈希冲突。
+散列函数 哈希算法是一种广义的算法，也可以认为是一种思想，使用哈希算法可提高存储空间的利用率和数据查询效率。
+哈希函数又称为散列函数，采用散列算法。 哈希函数是一种从任何一种数据中创建小的数字“指纹”的方法。 哈希函数将数据打乱混合，重新创建一个叫做散列值的“指纹”。 哈希函数会将消息或数据压缩成摘要，使得数据量变小，将数据的格式固定下来。 Go 接口 Golang的hash包提供多种散列算法，比如crc32/64, adler32, fnv&amp;hellip;
+1 2 3 4 5 6 7 type Hash interface{ io.Writer //嵌入io.Writer接口，向执行中的hash加入更多数据。 Sum(b []byte) []byte//将当前hash追加到字节数组b后面，不会改变当前hash状态。 Reset()//重置hash到初始化状态 Size() int//返回hash结果返回的字节数 BlockSize() int//返回hash的集成块大小，为提高效率，Write方法传入的字节数最好是block size的倍数。 } MD5 MD5消息摘要算法，是一种被广泛使用的密码散列函数，可以产出一个128位（16子节）的散列值。
+MD5已被证实无法防止碰撞，已经不算是很安全的算法，因此不适用于安全性认证，比如SSL公开密钥认证或数字签名等用途。
+对于需要高度安全性的数据，一般建议改用其他算法，比如SHA256。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 input := &amp;#34;123456&amp;#34; hash := md5.New() //创建散列值 n, err := hash.Write([]byte(input)) //写入待处理字节 if err !</description>
+    </item>
+    
+    <item>
+      <title>Go Function Option 函数选项模式</title>
+      <link>https://reid00.github.io/posts/langs_linux/go-function-option-%E5%87%BD%E6%95%B0%E9%80%89%E9%A1%B9%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:54 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/go-function-option-%E5%87%BD%E6%95%B0%E9%80%89%E9%A1%B9%E6%A8%A1%E5%BC%8F/</guid>
+      <description>介绍 Go 语言没有构造函数，一般通过定义 New 函数来充当构造函数。然而，如果结构有较多字段，要初始化这些字段，有很多种方式，但有一种方式认为是最好的，这就是函数式选项模式（Functional Options Pattern）。
+函数式选项模式是一种在 Go 中构造结构体的模式，它通过设计一组非常有表现力和灵活的 API 来帮助配置和初始化结构体。
+在 Uber 的 Go 语言规范 中提到了该模式：
+Functional options 是一种模式，在该模式中，你可以声明一个不透明的 Option 类型，该类型在某些内部结构中记录信息。你接受这些可变数量的选项，并根据内部结构上的选项记录的完整信息进行操作。 将此模式用于构造函数和其他公共 API 中的可选参数，你预计这些参数需要扩展，尤其是在这些函数上已经有三个或更多参数的情况下。
+Demo 为了更好的理解该模式，我们通过一个例子来讲解。
+定义一个 Server 结构体
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 package main type Server struct { host string port int } func New(host string, port int) *Server { return &amp;amp;Server{host, port} } func (s *Server) Start() error { } 使用</description>
+    </item>
+    
+    <item>
+      <title>Gin Error Connection Write Broken Pipe</title>
+      <link>https://reid00.github.io/posts/langs_linux/gin-error-connection-write-broken-pipe/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:51 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/gin-error-connection-write-broken-pipe/</guid>
+      <description>简介 最近使用Gin 框架写接口，总是会出现一些write: connection reset by peer 或者 write: broken pipe 的错误, 在查询资料的时候，发现TCP的下面的情况可以触发一下两种错误。 另外Gin 的出现这个错误的原因这边有个分析Gin-RST 大概原因就是DB 连接池太小，有大量请求排队等待空闲链接，排队时间越长积压的请求越多，请求处理耗时越大，直到积压请求太多把句柄打满，出现了死锁。
+write: broken pipe 触发原因:
+服务器接收第一个客户端字节并关闭连接。已关闭的服务端 在收到 客户端的下一个字节写入 将导致服务器用 RST 数据包进行应答。当向接收 RST 的 socket 发送更多字节时，该socket将返回broken pipe。这就是客户机向服务器发送最后一个字节时发生的情况。
+经过测试: 向一个已经关闭的socket 写入数据，(无论buffer 是否写满) 都会出现第一次返回RST， 第二次写入出现broken pipe error, 读的话是EOF
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 package main import ( &amp;#34;errors&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net&amp;#34; &amp;#34;os&amp;#34; &amp;#34;syscall&amp;#34; &amp;#34;time&amp;#34; ) func server() { listener, err := net.</description>
+    </item>
+    
+  </channel>
+</rss>

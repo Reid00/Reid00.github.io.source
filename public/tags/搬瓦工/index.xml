@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>搬瓦工 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E6%90%AC%E7%93%A6%E5%B7%A5/</link>
+    <description>Recent content in 搬瓦工 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:14 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E6%90%AC%E7%93%A6%E5%B7%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>板瓦工搭建VPS搭建vpn</title>
+      <link>https://reid00.github.io/posts/other/%E6%9D%BF%E7%93%A6%E5%B7%A5%E6%90%AD%E5%BB%BAvps%E6%90%AD%E5%BB%BAvpn/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:14 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/other/%E6%9D%BF%E7%93%A6%E5%B7%A5%E6%90%AD%E5%BB%BAvps%E6%90%AD%E5%BB%BAvpn/</guid>
+      <description>板瓦工以及产品介绍 该商家隶属于美国IT7公司旗下的一款便宜年付KVM架构的VPS主机商家，从2013年开始推出低价VPS主机配置进入市场，确实受到广大网友的喜欢，且在最近几年开始改变策略，取消低价配置，然后以高配置和优化线路速度。以前我们搬瓦工VPS主机的用户感觉可能并不是特别适应，因为以前喜欢他们是因为便宜，如今价格比较高，但是线路和速度比较好。
+搬瓦工VPS商家支持支付宝、微信、PAYPAL、银联以及信用卡多种付款方式，这个也是很多国内用户选择的原因之一。目前最低配置是年付49.99美元，价格上肯定没有早年便宜，但是性价比在同行中还是具有一定优势的。搬瓦工VPS主机的特点在于线路还是不错的，而且带宽最高10Gbps，支持切换到其他机房，全部是自己操作。我们一定要正规使用。
+**搬瓦工VPS当前库存查看列表：**https://www.laozuo.org/go/bandwagonhost-cart
+搬瓦工vps主机方案分享 CN2 GIA ECOMMERCE（推荐） CPU：2核 内存：1GB 硬盘：20GB SSD 流量：1000GB 端口：2.5Gbps 架构：KVM+KiwiVM面板 IP数：1独立IP 系统：Linux 价格：$65.99/半年（购买） CPU：3核 内存：2GB 硬盘：40GB SSD 流量：2000GB 端口：2.5Gbps 架构：KVM+KiwiVM面板 IP数：1独立IP 系统：Linux 价格：$69.99/季度（购买） 这个配置方案，我们可以看到2.5Gbps带宽起步，最高达到10Gbps，同时我们可以看到一共有7个方案，根据配置不同有区别的。相比一般的配置方案，我们可以看到带宽确实比较高，而且是CN2 GIA优化线路，如果有需要大带宽方案的可以选择，而且这个方案可以切换到其他机房。
+2、KVM普通线路（8机房可切CN2 GT)
+CPU：2核
+内存：1024MB
+硬盘：20GB SSD
+流量：1000GB
+端口：1Gbps
+架构：KVM+KiwiVM面板
+IP数：1独立IP
+系统：Linux
+价格：$49.99/年（购买）
+CPU：3核
+内存：2048MB
+硬盘：40GB SSD
+流量：2000GB
+端口：1Gbps
+架构：KVM+KiwiVM面板
+IP数：1独立IP
+系统：Linux
+价格：$27.99/季度（购买）
+KVM普通方案有目前最低年付49.99方案，2018年12月份下架原来年付19.99方案。入门VPS可选方案，有8个机房可以切换，可以切换至单程CN2 GT线路。
+3、CN2 GIA优化线路（三网直连双程CN2）
+CPU：1核心
+内存：512MB
+硬盘：10GB SSD
+流量：300GB
+端口：1Gbps
+架构：KVM+KiwiVM面板
+IP数：1独立IP
+系统：Linux
+价格：$39.99/年（限量缺货）
+CPU：2核心
+内存：1024MB
+硬盘：20GB SSD</description>
+    </item>
+    
+  </channel>
+</rss>

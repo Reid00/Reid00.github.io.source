@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>位运算 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+    <description>Recent content in 位运算 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:12 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常见的二进位运算技巧</title>
+      <link>https://reid00.github.io/posts/algo/%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BA%8C%E8%BF%9B%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:12 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/algo/%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BA%8C%E8%BF%9B%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7/</guid>
+      <description>1. 位运算概述 从现代计算机中所有的数据二进制的形式存储在设备中。即 0、1 两种状态，计算机对二进制数据进行的运算(+、-、*、/)都是叫位运算，即将符号位共同参与运算的运算。
+1 2 3 int a = 35; int b = 47; int c = a + b; 实际上运算如下: 计算两个数的和，因为在计算机中都是以二进制来进行运算，所以上面我们所给的 int 变量会在机器内部先转换为二进制在进行相加：
+1 2 3 4 35: 0 0 1 0 0 0 1 1 47: 0 0 1 0 1 1 1 1 ———————————————————— 82: 0 1 0 1 0 0 1 0 所以，相比在代码中直接使用(+、-、*、/)运算符，合理的运用位运算更能显著提高代码在机器上的执行效率。
+2. 位运算概览 3. 按位与运算符 定义：参加运算的两个数据，按二进制位进行&amp;quot;与&amp;quot;运算。 运算规则：
+1 0&amp;amp;0=0 0&amp;amp;1=0 1&amp;amp;0=0 1&amp;amp;1=1 ==总结：两位同时为1，结果才为1，否则结果为0。==</description>
+    </item>
+    
+  </channel>
+</rss>

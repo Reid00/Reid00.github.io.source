@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/spark/</link>
+    <description>Recent content in Spark on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:54 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spark Join 原理详解</title>
+      <link>https://reid00.github.io/posts/computation/spark-join-%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:54 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-join-%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3/</guid>
+      <description>介绍 Join大致包括三个要素：Join方式、Join条件以及过滤条件。其中过滤条件也可以通过AND语句放在Join条件中。 Spark支持的Join 包括:
+inner join left outer join right outer join full outer join left semi join left anti join Join 的基本流程 总体上来说，Join的基本实现流程如下图所示，Spark将参与Join的两张表抽象为流式遍历表(streamIter)和查找表(buildIter)，通常streamIter为大表，buildIter为小表，我们不用担心哪个表为streamIter，哪个表为buildIter，这个spark会根据join语句自动帮我们完成。 在实际计算时，spark会基于streamIter来遍历，每次取出streamIter中的一条记录rowA，根据Join条件计算keyA，然后根据该keyA去buildIter中查找所有满足Join条件(keyB==keyA)的记录rowBs，并将rowBs中每条记录分别与rowAjoin得到join后的记录，最后根据过滤条件得到最终join的记录。
+从上述计算过程中不难发现，对于每条来自streamIter的记录，都要去buildIter中查找匹配的记录，所以buildIter一定要是查找性能较优的数据结构 如Hash Table。spark提供了三种join实现：sort merge join、broadcast join以及hash join。
+Hash join实现 spark提供了hash join实现方式，在shuffle read阶段不对记录排序，反正来自两格表的具有相同key的记录会在同一个分区，只是在分区内不排序，将来自buildIter的记录放到hash表中，以便查找，如下图所示。
+由于Spark是一个分布式的计算引擎，可以通过分区的形式将大批量的数据划分成n份较小的数据集进行并行计算。这种思想应用到Join上便是Shuffle Hash Join了。利用key相同必然分区相同的这个原理，SparkSQL将较大表的join分而治之，先将表划分成n个分区，在对buildlter查找表和streamlter表进行Hash Join。 Shuffle Hash Join分为两步： 对两张表分别按照join keys进行重分区，即shuffle，目的是为了让有相同join keys值的记录分到对应的分区中 对 对应分区中的数据进行join，此处先将小表分区构造为一张hash表，然后根据大表分区中记录的join keys值拿出来进行匹配 不难发现，要将来自buildIter的记录放到hash表中，那么每个分区来自buildIter的记录不能太大，否则就存不下，默认情况下hash join的实现是关闭状态，如果要使用hash join，必须满足以下四个条件：
+buildIter总体估计大小超过spark.sql.autoBroadcastJoinThreshold设定的值，即不满足broadcast join条件 开启尝试使用hash join的开关，spark.sql.join.preferSortMergeJoin=false 每个分区的平均大小不超过spark.sql.autoBroadcastJoinThreshold设定的值，即shuffle read阶段每个分区来自buildIter的记录要能放到内存中 streamIter的大小是buildIter三倍以上 Sort Merge Join 实现 上面介绍的实现对于一定大小的表比较适用，但当两个表都非常大时，显然无论适用哪种都会对计算内存造成很大压力。这是因为join时两者采取的都是hash join，是将一侧的数据完全加载到内存中，使用hash code取join keys值相等的记录进行连接。
+要让两条记录能join到一起，首先需要将具有相同key的记录在同一个分区，所以通常来说，需要做一次shuffle，map阶段根据join条件确定每条记录的key，基于该key做shuffle write，将可能join到一起的记录分到同一个分区中，这样在shuffle read阶段就可以将两个表中具有相同key的记录拉到同一个分区处理。前面我们也提到，对于buildIter一定要是查找性能较优的数据结构，通常我们能想到hash表，但是对于一张较大的表来说，不可能将所有记录全部放到hash表中，SparkSQL采用了一种全新的方案来对表进行Join，即Sort Merge Join。这种实现方式不用将一侧数据全部加载后再进行hash join，但需要在join前将数据排序，如下图所示： 三个步骤: shuffle阶段：或者说shuffle write 阶段，将两张大表根据join key进行重新分区，两张表数据会分布到整个集群，以便分布式并行处理 sort阶段：对单个分区节点的两表数据，分别进行排序 merge阶段：或者说shuffle read 阶段，对排好序的两张分区表数据执行join操作。join操作很简单，分别遍历两个有序序列，碰到相同join key就merge输出，否则取更小一边</description>
+    </item>
+    
+    <item>
+      <title>Spark内存空间管理</title>
+      <link>https://reid00.github.io/posts/computation/spark%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:52 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/</guid>
+      <description>1. 概述 Spark应用在yarn运行模式下，其以Executor Container的形式存在，container能申请到的最大内存受yarn.scheduler.maximum-allocation-mb限制。下面说的大部分内容其实与yarn等没有多少直接关系，知识均为通用的。
+Spark应用运行过程中的内存可以分为堆内内存与堆外内存，其中堆内内存onheap由spark.executor.memory指定，堆外内存offheap由spark.yarn.executor.memoryOverhead参数指定，默认为executorMemory*0.1,最小384M。堆内内存executorMemory是spark使用的主要部分，其大小通过-Xmx参数传给jvm，内部有300M的保留资源不被executor使用。这里的堆外内存部分主要用于JVM自身，如字符串、NIO Buffer等开销，此部分用户代码及spark都无法直接操作。
+executor执行的时候，用的内存可能会超过executor-memory，所以会为executor额外预留一部分内存，spark.yarn.executor.memoryOverhead即代表这部分内存。
+另外还有部分堆外内存由spark.memory.offHeap.enabled及spark.memory.offHeap.size控制的堆外内存，这部分也归offheap，但主要是供统一内存管理使用的。 2. 堆内内存 1 2 3 4 5 6 7 object UnifiedMemoryManager { // Set aside a fixed amount of memory for non-storage, non-execution purposes. // This serves a function similar to `spark.memory.fraction`, but guarantees that we reserve // sufficient memory for the system even for small heaps. E.g. if we have a 1GB JVM, then // the memory used for execution and storage will be (1024 - 300) * 0.</description>
+    </item>
+    
+    <item>
+      <title>Spark 最佳实践指南</title>
+      <link>https://reid00.github.io/posts/computation/spark-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:51 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</guid>
+      <description>简介 总体上来说，Spark的流程和MapReduce的思想很类似，只是实现的细节方面会有很多差异。 首先澄清2个容易被混淆的概念：
+Spark是基于内存计算的框架 Spark比Hadoop快100倍 第一个问题是个伪命题。 任何程序都需要通过内存来执行，不论是单机程序还是分布式程序。 Spark会被称为 基于内存计算的框架 ，主要原因在于其和之前的分布式计算框架很大不同的一点是，Shuffle的数据集不需要通过读写磁盘来进行交换，而是直接通过内存交换数据得到。效率比读写磁盘的MapReduce高上好多倍，所以很多人称之为 基于内存的计算框架，其实更应该称为 基于内存进行数据交换的计算框架。
+至于第二个问题，有同学说，Spark官网 就是这么介绍的呀，Spark run workloads 100x faster than Hadoop。
+这点没什么问题，但是请注意官网用来比较的 workload 是 Logistic regresstion。 注意到了吗，这是一个需要反复迭代计算的机器学习算法，Spark是非常擅长在这种需要反复迭代计算的场景中（见问题1），而Hadoop MapReduce每次迭代都需要读写一次HDFS。以己之长，击人之短 差距可向而知。
+如果都只是跑一个简单的过滤场景的 workload，那么性能差距不会有这么多，总体上是一个级别的耗时。
+所以千万不要在任何场景中都说 Spark是基于内存的计算、Spark比Hadoop快100倍，这都是不严谨的说法。
+逻辑执行图 1. 弹性分布式数据集 RDD是Spark中的核心概念，直译过来叫做 弹性分布式数据集。
+所有的RDD要么是从外部数据源创建的，要么是从其他RDD转换过来的。RDD有两种产生方式：
+从外部数据源中创建 从一个RDD中转换而来 你可以把它当做一个List，但是这个List里面的元素是分布在不同机器上的，对List的所有操作都将被分发到不同的机器上执行。 RDD就是我们需要操作的数据集，并解决了 数据在哪儿 这个问题。 有了数据之后，我们需要定义在数据集上的操作（即业务逻辑）。 回想一下我们之前经历的流程：
+一开始我们什么都没有，只有分散在各个服务器上的日志数据，并且通过一个简单的脚本遍历连接服务器，执行相关的统计逻辑 我们接触了MapReduce计算框架，并定义了Map和Reduce的函数接口来实现计算逻辑，从而用户不比关心计算逻辑拆分与分发等底层问题 虽然MapReduce已经解决了我们分布式计算的需求，但是其编程范式只有map和reduce两个接口，使用不灵活。
+在Spark中，RDD提供了比MapReduce编程模型丰富得多的编程接口，如：filter、map、groupBy等都可以直接调用实现（这些操作本质上也划分为Map和Reduce两种类型）。
+现在，统计PV的例子中实现计算逻辑的伪代码可以这么写：
+1 2 3 4 5 6 7 8 9 10 // 从外部数据源中创建RDD，即读取日志数据 val rdd = sc.textFile(&amp;#34;...&amp;#34;) // 解析日志中的ip rdd.map(...) // 根据ip分组 .</description>
+    </item>
+    
+    <item>
+      <title>Spark 面试注意点</title>
+      <link>https://reid00.github.io/posts/computation/spark-%E9%9D%A2%E8%AF%95%E6%B3%A8%E6%84%8F%E7%82%B9/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:51 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-%E9%9D%A2%E8%AF%95%E6%B3%A8%E6%84%8F%E7%82%B9/</guid>
+      <description>基础篇 sparksql 如何加载metadata 任何的SQL引擎都是需要加载元数据的，不然，连执行计划都生成不了。 加载元数据总的来说分为两步:
+加载元数据 创建会话连接Hive MetaStore 首先，Spark检测到我们没有设置spark.sql.warehouse.dir，然后就开始找我们在hite-site.xml中配置的hive.metastore.warehouse.dir。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 &amp;lt;property&amp;gt; &amp;lt;name&amp;gt;hive.metastore.uris&amp;lt;/name&amp;gt; &amp;lt;value&amp;gt;thrift://test-3:9083,thrift://test-4:9083&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;property&amp;gt; &amp;lt;name&amp;gt;hive.metastore.client.socket.timeout&amp;lt;/name&amp;gt; &amp;lt;value&amp;gt;300&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;property&amp;gt; &amp;lt;name&amp;gt;hive.metastore.warehouse.dir&amp;lt;/name&amp;gt; &amp;lt;value&amp;gt;/data/hive/warehouse&amp;lt;/value&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;property&amp;gt; &amp;lt;name&amp;gt;hive.warehouse.subdir.inherit.perms&amp;lt;/name&amp;gt; &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt; 然后，SparkSession在HDFS临时位置创建了下面目录。
+1 2 Moved: &amp;#39;hdfs://nn1/data/hive/warehouse/pyspark_test.db/tb_name/part-00000-c46bc573-0d1d-4ac4-8a69-2359dff82485-c000&amp;#39; to trash at: hdfs://nn1/user/hive/.Trash/Current Moved: &amp;#39;hdfs://nn1/data/hive/warehouse/pyspark_test.db/tb_name/part-00001-c46bc573-0d1d-4ac4-8a69-2359dff82485-c000&amp;#39; to trash at: hdfs://nn1/user/hive/.Trash/Current 最后，Spark开始通过thrift RPC去连接Hive的MetaStore Server。
+进阶篇 Spark为什么这么快 Spark是一个基于内存的，用于大规模数据处理的统一分析引擎，其运算速度可以达到Mapreduce的10-100倍。具有如下特点：
+内存计算。Spark优先将数据加载到内存中，数据可以被快速处理，并可启用缓存。 shuffle过程优化。和Mapreduce的shuffle过程中间文件频繁落盘不同，Spark对Shuffle机制进行了优化，降低中间文件的数量并保证内存优先。 RDD计算模型。Spark具有高效的DAG调度算法，同时将RDD计算结果存储在内存中，避免重复计算。 如何理解DAGScheduler的Stage划分算法 官网的RDD执行流程图: 1 rdd1.join(rdd2).groupBy().filter() 针对一段应用代码(如上)，Driver会以Action算子为边界生成DAG调度图。DAGScheduler从DAG末端开始遍历划分Stage，封装成一系列的tasksets移交TaskScheduler，后者根据调度算法, 将taskset分发到相应worker上的Executor中执行。
+DAGSchduler的工作原理 DAGScheduler是一个面向stage调度机制的高级调度器，为每个job计算stage的DAG(有向无环图)，划分stage并提交taskset给TaskScheduler。 追踪每个RDD和stage的物化情况，处理因shuffle过程丢失的RDD，重新计算和提交。 查找rdd partition 是否cache/checkpoint。提供优先位置给TaskScheduler，等待后续TaskScheduler的最佳位置划分 Stage划分算法 从触发action操作的算子开始，从后往前遍历DAG。 为最后一个rdd创建finalStage。 遍历过程中如果发现该rdd是宽依赖，则为其生成一个新的stage，与旧stage分隔而开，此时该rdd是新stage的最后一个rdd。 如果该rdd是窄依赖，将该rdd划分为旧stage内，继续遍历，以此类推，继续遍历直至DAG完成。 如何理解TaskScheduler的Task分配算法 TaskScheduler负责Spark中的task任务调度工作。TaskScheduler内部使用TasksetPool调度池机制存放task任务。TasksetPool分为FIFO(先进先出调度)和FAIR(公平调度)。 FIFO调度: 基于队列思想，使用先进先出原则顺序调度taskset FAIR调度: 根据权重值调度，一般选取资源占用率作为标准，可人为设定 TaskScheduler的工作原理 负责Application在Cluster Manager上的注册 根据不同策略创建TasksetPool资源调度池，初始化pool大小 根据task分配算法发送Task到Executor上执行 Task分配算法 首先获取所有的executors，包含executors的ip和port等信息 将所有的executors根据shuffle算法进行打散 遍历executors。在程序中依次尝试本地化级别，最终选择每个task的最优位置(结合DAGScheduler优化位置策略) 序列化task分配结果，并发送RPC消息等待Executor响应 Spark的本地化级别有哪几种？怎么调优 移动计算 or 移动数据？这是一个问题。在分布式计算的核心思想中，移动计算永远比移动数据要合算得多，如何合理利用本地化数据计算是值得思考的一个问题。</description>
+    </item>
+    
+    <item>
+      <title>Spark on Yarn 执行流程解析</title>
+      <link>https://reid00.github.io/posts/computation/spark-on-yarn-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:50 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-on-yarn-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</guid>
+      <description>简介 当一个Spark应用提交到集群上运行时,应用架构包含了两个部分:
+Driver Program（资源申请和调度Job执行） Executors（运行Job中Task任务和缓存数据），两个都是JVM Process进程 Driver程序运行的位置可以通过–deploy-mode 来指定:
+Driver指的是The process running the main() function of the application and creating the SparkContext 运行应用程序的main()函数并创建SparkContext的进程
+client: 表示Driver运行在提交应用的Client上(默认) cluster: 表示Driver运行在集群中(Standalone：Worker，YARN：NodeManager) cluster和client模式最最本质的区别是：Driver程序运行在哪里。 企业实际生产环境中使用cluster 为主要模式。 1. Client(客户端)模式 DeployMode为Client，表示应用Driver Program运行在提交应用Client主机上。 示意图: 1 2 3 4 5 6 7 8 9 10 11 SPARK_HOME=/export/server/spark ${SPARK_HOME}/bin/spark-submit \ --master yarn \ --deploy-mode client \ --driver-memory 512m \ --executor-memory 512m \ --num-executors 1 \ --total-executor-cores 2 \ --class org.apache.spark.examples.SparkPi \ ${SPARK_HOME}/examples/jars/spark-examples_2.11-2.4.5.jar \ 10 2.</description>
+    </item>
+    
+    <item>
+      <title>Spark 广播变量</title>
+      <link>https://reid00.github.io/posts/computation/spark-%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:50 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/</guid>
+      <description>概述 在spark程序中，当一个传递给Spark操作(例如map和reduce)的函数在远程节点上面运行时，Spark操作实际上操作的是这个函数所用变量的一个独立副本。这些变量会被复制到每台机器上，并且这些变量在远程机器上的所有更新都不会传递回驱动程序。通常跨任务的读写变量是低效的，但是，Spark还是为两种常见的使用模式提供了两种有限的共享变量：广播变（broadcast variable）和累加器（accumulator）
+为什么需要广播变量 如果我们要在分布式计算里面分发大对象，例如：字典，集合，黑白名单等，这个都会由Driver端进行分发，一般来讲，如果这个变量不是广播变量，那么每个task就会分发一份，这在task数目十分多的情况下Driver的带宽会成为系统的瓶颈，而且会大量消耗task服务器上的资源，如果将这个变量声明为广播变量，那么知识每个executor拥有一份，这个executor启动的task会共享这个变量，节省了通信的成本和服务器的资源。
+图解广播变量 不使用广播变量 使用广播变量 可知: 如果使用广播变量，一个executor 只有一个driver 变量的副本，节省资源，而不是用的话，同一个executor 的不同task 都会有这个变量的副本，网络IO就会成为瓶颈。
+如何定义广播变量 1 2 3 4 5 6 7 8 val data = List(1, 2, 3, 4, 5, 6) val bdata = sc.broadcast(data) val rdd = sc.parallelize(1 to 6, 2) val observedSizes = rdd.map(_ =&amp;gt; bdata.value.size) 取 value val c = broadcast.value 注意点 变量一旦被定义为一个广播变量，那么这个变量只能读，不能修改
+1、能不能将一个RDD使用广播变量广播出去？
+不能，因为RDD是不存储数据的。可以将RDD的结果广播出去。 2、 广播变量只能在Driver端定义，不能在Executor端定义。
+3、 在Driver端可以修改广播变量的值，在Executor端无法修改广播变量的值。
+4、如果executor端用到了Driver的变量，如果不使用广播变量在Executor有多少task就有多少Driver端的变量副本。
+5、如果Executor端用到了Driver的变量，如果使用广播变量在每个Executor中只有一份Driver端的变量副本。
+为什么需要累加器 在spark应用程序中，我们经常会有这样的需求，如异常监控，调试，记录符合某特性的数据的数目，这种需求都需要用到计数器，如果一个变量不被声明为一个累加器，那么它将在被改变时不会再driver端进行全局汇总，即在分布式运行时每个task运行的只是原始变量的一个副本，并不能改变原始变量的值，但是当这个变量被声明为累加器后，该变量就会有分布式计数的功能。
+图解累加器 不使用累加器 使用累加器 如何定义一个累加器？ 1 2 3 4 val a = sc.</description>
+    </item>
+    
+  </channel>
+</rss>

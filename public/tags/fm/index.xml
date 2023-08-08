@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FM on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/fm/</link>
+    <description>Recent content in FM on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:16 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/fm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FM FFM DeepFM</title>
+      <link>https://reid00.github.io/posts/ml/fm-ffm-deepfm/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:16 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/fm-ffm-deepfm/</guid>
+      <description>介绍 FM和FMM模型在数据量比较大并且特征稀疏的情况下，仍然有优秀的性能表现，在CTR/CVR任务上尤其突出。
+本文包括：
+- FM 模型- FFM 模型- Deep FM 模型- Deep FFM模型FM模型的引入-广告特征的稀疏性 FM（Factorization machines）模型由Steffen Rendle于2010年提出，目的是解决稀疏数据下的特征组合问题。
+在介绍FM模型之前，来看看稀疏数据的训练问题。
+以广告CTR（click-through rate）点击率预测任务为例，假设有如下数据
+Clicked? Country Day Ad_type 1 USA 26/11/15 Movie 0 China 19/2/15 Game 1 China 26/11/15 Game 第一列Clicked是类别标记，标记用户是否点击了该广告，而其余列则是特征（这里的三个特征都是类别类型），一般的，我们会对数据进行One-hot编码将类别特征转化为数值特征，转化后数据如下:
+Clicked? Country=USA Country=China Day=26/11/15 Day=19/2/15 Ad_type=Movie Ad_type=Game 1 1 0 1 0 1 0 0 0 1 0 1 0 1 1 0 1 1 0 0 1 经过One-hot编码后，特征空间是十分稀疏的。特别的，某类别特征有m种不同的取值，则one-hot编码后就会被变为m维！当类别特征越多、类别特征的取值越多，其特征空间就更加稀疏。
+此外，往往我们会将特征进行两两的组合，这是因为：</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slidev on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/categories/slidev/</link>
+    <description>Recent content in Slidev on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 06 Mar 2023 14:00:08 +0800</lastBuildDate><atom:link href="https://reid00.github.io/categories/slidev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Slidev Markdown 转PPT</title>
+      <link>https://reid00.github.io/posts/other/slidev-markdown-%E8%BD%ACppt/</link>
+      <pubDate>Mon, 06 Mar 2023 14:00:08 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/other/slidev-markdown-%E8%BD%ACppt/</guid>
+      <description>介绍 Slidev 使用一种扩展的 Markdown 格式，在一个纯文本文件中存储和组织你的幻灯片。这让你专注于制作内容。而且由于内容和样式是分开的，这也使得在不同的主题之间切换变得更加容易。
+官网 GitHub
+如何使用 Node.js 的安装 参考Node 安装合适的版本
+Slidev 安装简介 本地创建 快速开始最好的方式就是使用官方的初始模板。
+使用 NPM： 可以本地创建一个slidev 的文件夹，然后在此文件夹下目录的命令行中输入下面的命令: 1 npm install slidev 安装完成之后会生成一个 slidev 的文件夹，里面有一个demo 的md 文件。
+使用 Yarn： 1 yarn create slid 命令行界面 创建之后，按 ctrl + c 结束demo， 如果想要再次打开，可以使用 npx slidev
+全局安装 你可以使用如下命令在全局安装 Slidev：
+1 npm i -g @slidev/cli 然后即可在任何地方使用 slidev，而无需每次都创建一个项目。
+1 slidev xx.md 查看相关命令 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 $ slidev --help slidev [args] 命令： slidev [entry] Start a local server for Slidev [默认值] slidev build [entry] Build hostable SPA slidev format [entry] Format the markdown file slidev theme [subcommand] Theme related operations slidev export [entry] Export slides to PDF slidev export-notes [entry] Export slide notes to PDF 位置： entry path to the slides markdown entry [字符串] [默认值: &amp;#34;slides.</description>
+    </item>
+    
+  </channel>
+</rss>

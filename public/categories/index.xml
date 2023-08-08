@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/categories/</link>
+    <description>Recent content in Categories on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 Aug 2023 11:53:15 +0800</lastBuildDate><atom:link href="https://reid00.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IO</title>
+      <link>https://reid00.github.io/categories/io/</link>
+      <pubDate>Fri, 04 Aug 2023 11:53:15 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/io/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OS</title>
+      <link>https://reid00.github.io/categories/os/</link>
+      <pubDate>Fri, 04 Aug 2023 11:53:15 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/os/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FS</title>
+      <link>https://reid00.github.io/categories/fs/</link>
+      <pubDate>Sun, 23 Apr 2023 14:04:18 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/fs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>操作系统</title>
+      <link>https://reid00.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Sun, 23 Apr 2023 14:04:18 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>文件系统</title>
+      <link>https://reid00.github.io/categories/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Sun, 23 Apr 2023 14:04:18 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Memory</title>
+      <link>https://reid00.github.io/categories/memory/</link>
+      <pubDate>Thu, 13 Apr 2023 15:32:55 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/memory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>内存</title>
+      <link>https://reid00.github.io/categories/%E5%86%85%E5%AD%98/</link>
+      <pubDate>Thu, 13 Apr 2023 15:32:55 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E5%86%85%E5%AD%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://reid00.github.io/categories/machine-learning/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:28 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>机器学习</title>
+      <link>https://reid00.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:28 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>https://reid00.github.io/categories/deep-learning/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:16 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPN</title>
+      <link>https://reid00.github.io/categories/vpn/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:14 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/vpn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPS</title>
+      <link>https://reid00.github.io/categories/vps/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:14 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/vps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>悖论</title>
+      <link>https://reid00.github.io/categories/%E6%82%96%E8%AE%BA/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:13 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E6%82%96%E8%AE%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>搜索引擎</title>
+      <link>https://reid00.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:13 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>位运算</title>
+      <link>https://reid00.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:12 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://reid00.github.io/categories/hugo/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:11 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VsCode</title>
+      <link>https://reid00.github.io/categories/vscode/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:11 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/vscode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://reid00.github.io/categories/python/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:10 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>编码</title>
+      <link>https://reid00.github.io/categories/%E7%BC%96%E7%A0%81/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:10 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E7%BC%96%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>认证</title>
+      <link>https://reid00.github.io/categories/%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:10 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E8%AE%A4%E8%AF%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IP</title>
+      <link>https://reid00.github.io/categories/ip/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:09 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/ip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Storage</title>
+      <link>https://reid00.github.io/categories/storage/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:09 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/storage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TCP</title>
+      <link>https://reid00.github.io/categories/tcp/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:09 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/tcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网络</title>
+      <link>https://reid00.github.io/categories/%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:09 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/%E7%BD%91%E7%BB%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://reid00.github.io/categories/linux/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:04 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://reid00.github.io/categories/docker/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:02 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://reid00.github.io/categories/git/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:01 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://reid00.github.io/categories/github/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:01 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://reid00.github.io/categories/golang/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:59 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>https://reid00.github.io/categories/server/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:59 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Raft</title>
+      <link>https://reid00.github.io/categories/raft/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:58 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/raft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spark</title>
+      <link>https://reid00.github.io/categories/spark/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:54 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTTP</title>
+      <link>https://reid00.github.io/categories/http/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:53 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gin</title>
+      <link>https://reid00.github.io/categories/gin/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:51 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/gin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slidev</title>
+      <link>https://reid00.github.io/categories/slidev/</link>
+      <pubDate>Mon, 06 Mar 2023 14:00:08 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/categories/slidev/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>内存空间管理 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in 内存空间管理 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:52 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spark内存空间管理</title>
+      <link>https://reid00.github.io/posts/computation/spark%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:52 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/</guid>
+      <description>1. 概述 Spark应用在yarn运行模式下，其以Executor Container的形式存在，container能申请到的最大内存受yarn.scheduler.maximum-allocation-mb限制。下面说的大部分内容其实与yarn等没有多少直接关系，知识均为通用的。
+Spark应用运行过程中的内存可以分为堆内内存与堆外内存，其中堆内内存onheap由spark.executor.memory指定，堆外内存offheap由spark.yarn.executor.memoryOverhead参数指定，默认为executorMemory*0.1,最小384M。堆内内存executorMemory是spark使用的主要部分，其大小通过-Xmx参数传给jvm，内部有300M的保留资源不被executor使用。这里的堆外内存部分主要用于JVM自身，如字符串、NIO Buffer等开销，此部分用户代码及spark都无法直接操作。
+executor执行的时候，用的内存可能会超过executor-memory，所以会为executor额外预留一部分内存，spark.yarn.executor.memoryOverhead即代表这部分内存。
+另外还有部分堆外内存由spark.memory.offHeap.enabled及spark.memory.offHeap.size控制的堆外内存，这部分也归offheap，但主要是供统一内存管理使用的。 2. 堆内内存 1 2 3 4 5 6 7 object UnifiedMemoryManager { // Set aside a fixed amount of memory for non-storage, non-execution purposes. // This serves a function similar to `spark.memory.fraction`, but guarantees that we reserve // sufficient memory for the system even for small heaps. E.g. if we have a 1GB JVM, then // the memory used for execution and storage will be (1024 - 300) * 0.</description>
+    </item>
+    
+  </channel>
+</rss>

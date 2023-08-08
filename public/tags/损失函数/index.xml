@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>损失函数 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</link>
+    <description>Recent content in 损失函数 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:23 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习之常见损失函数</title>
+      <link>https://reid00.github.io/posts/ml/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:23 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</guid>
+      <description>简介 损失函数用来评价模型的预测值和真实值不一样的程度，损失函数越好，通常模型的性能越好。不同的模型用的损失函数一般也不一样。
+损失函数分为经验风险损失函数和结构风险损失函数。经验风险损失函数指预测结果和实际结果的差别，结构风险损失函数是指经验风险损失函数加上正则项。
+常见的损失函数以及其优缺点如下：
+1. 0-1损失函数(zero-one loss) 0-1损失是指预测值和目标值不相等为1， 否则为0:
+特点：
+(1) 0-1损失函数直接对应分类判断错误的个数，但是它是一个非凸函数，不太适用.
+(2) 感知机就是用的这种损失函数。但是相等这个条件太过严格，因此可以放宽条件，即满足 时认为相等，
+2. 绝对值损失函数 绝对值损失函数是计算预测值与目标值的差的绝对值：
+3. log对数损失函数 log对数损失函数的标准形式如下：
+特点：
+(1) log对数损失函数能非常好的表征概率分布，在很多场景尤其是多分类，如果需要知道结果属于每个类别的置信度，那它非常适合。
+(2) 健壮性不强，相比于hinge loss对噪声更敏感。
+(3) 辑回归的损失函数就是log对数损失函数。
+4. 平方损失函数 平方损失函数标准形式如下：
+特点：
+(1)经常应用与回归问题
+5. 指数损失函数（exponential loss） 指数损失函数的标准形式如下：
+特点：
+(1)对离群点、噪声非常敏感。经常用在AdaBoost算法中。
+6. Hinge 损失函数 Hinge损失函数标准形式如下：
+特点：
+(1) hinge损失函数表示如果被分类正确，损失为0，否则损失就为 。SVM就是使用这个损失函数。
+(2) 一般的 是预测值，在-1到1之间， 是目标值(-1或1)。其含义是， 的值在-1和+1之间就可以了，并不鼓励 ，即并不鼓励分类器过度自信，让某个正确分类的样本距离分割线超过1并不会有任何奖励，从而使分类器可以更专注于整体的误差。
+(3) 健壮性相对较高，对异常点、噪声不敏感，但它没太好的概率解释。
+7. 感知损失(perceptron loss)函数 感知损失函数的标准形式如下：
+特点：
+(1)是Hinge损失函数的一个变种，Hinge loss对判定边界附近的点(正确端)惩罚力度很高。而perceptron loss只要样本的判定类别正确的话，它就满意，不管其判定边界的距离。它比Hinge loss简单，因为不是max-margin boundary，所以模型的泛化能力没 hinge loss强。
+8. 交叉熵损失函数 (Cross-entropy loss function) 交叉熵损失函数的标准形式如下:</description>
+    </item>
+    
+  </channel>
+</rss>

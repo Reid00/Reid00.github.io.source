@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/categories/python/</link>
+    <description>Recent content in Python on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:10 +0800</lastBuildDate><atom:link href="https://reid00.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unicode编码与Python</title>
+      <link>https://reid00.github.io/posts/langs_linux/unicode%E7%BC%96%E7%A0%81%E4%B8%8Epython/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:10 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/unicode%E7%BC%96%E7%A0%81%E4%B8%8Epython/</guid>
+      <description>简介 这有篇很好的文章，可以明白这个问题:
+为什么会报错“UnicodeEncodeError: &#39;ascii&#39; codec can&#39;t encode characters in position 0-1: ordinal not in range(128)”？本文就来研究一下这个问题。
+字符串在Python内部的表示是unicode编码，因此，在做编码转换时，通常需要以unicode作为中间编码，即先将其他编码的字符串解码（decode）成unicode，再从unicode编码（encode）成另一种编码。
+decode的作用是将其他编码的字符串转换成unicode编码，如str1.decode(&#39;gb2312&#39;)，表示将gb2312编码的字符串str1转换成unicode编码。
+encode的作用是将unicode编码转换成其他编码的字符串，如str2.encode(&#39;gb2312&#39;)，表示将unicode编码的字符串str2转换成gb2312编码。
+因此，转码的时候一定要先搞明白，字符串str是什么编码，然后decode成unicode，然后再encode成其他编码
+代码中字符串的默认编码与代码文件本身的编码一致。
+如：s=&amp;lsquo;中文&amp;rsquo;
+如果是在utf8的文件中，该字符串就是utf8编码，如果是在gb2312的文件中，则其编码为gb2312。这种情况下，要进行编码转换，都需 要先用decode方法将其转换成unicode编码，再使用encode方法将其转换成其他编码。通常，在没有指定特定的编码方式时，都是使用的系统默 认编码创建的代码文件。
+如果字符串是这样定义：s=u&amp;rsquo;中文&#39;
+则该字符串的编码就被指定为unicode了，即python的内部编码，而与代码文件本身的编码无关。因此，对于这种情况做编码转换，只需要直接使用encode方法将其转换成指定编码即可。
+如果一个字符串已经是unicode了，再进行解码则将出错，因此通常要对其编码方式是否为unicode进行判断：
+isinstance(s, unicode) #用来判断是否为unicode
+用非unicode编码形式的str来encode会报错
+如何获得系统的默认编码？
+1 2 3 4 5 6 7 #!/usr/bin/env python #coding=utf-8 import sys print sys.getdefaultencoding() 该段程序在英文WindowsXP上输出为：ascii
+在某些IDE中，字符串的输出总是出现乱码，甚至错误，其实是由于IDE的结果输出控制台自身不能显示字符串的编码，而不是程序本身的问题。
+如在UliPad中运行如下代码：
+1 2 3 s=u&amp;#34;中文&amp;#34; print s 会提示：UnicodeEncodeError: &#39;ascii&#39; codec can&#39;t encode characters in position 0-1: ordinal not in range(128)。这是因为UliPad在英文WindowsXP上的控制台信息输出窗口是按照ascii编码输出的（英文系统的默认编码是 ascii），而上面代码中的字符串是Unicode编码的，所以输出时产生了错误。
+将最后一句改为：print s.</description>
+    </item>
+    
+    <item>
+      <title>Python多线程多进程</title>
+      <link>https://reid00.github.io/posts/langs_linux/python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:08 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B/</guid>
+      <description>一、 python 的多线程不能利用多核CPU 因为GIL (全局解释器锁), Pyhton 只有一个GIL， 在运行Python 时， 就要拿到这个锁，才能运行，在遇到I/O 操作时，会释放这把锁。
+如果是纯计算型的程序，没有I/O 操作，解释器会每隔100 次操作就释放这把锁，让别的线程有机会执行(这个次数可以通sys.setcheckinterval来调整), 同一时间内，有且仅会只有一个线程获得GIL 在运行，其他线程都处于等待状态。
+如果是CPU 密集型的代码比如，循环，计算等，由于计算量多和大，计算很快就会达到100次，然后触发GIL 的释放与竞争，多个线程来回切换损耗资源，所以在多线程遇到CPU密集型的代码时，效率远远不如单线程高 如果是I/O 密集型代码(文件处理，网络爬虫), 开启多线程实际上是并发，IO操作会进行IO等待，在线程A等待时，自动切换到线程B，这样就提升了效率。 面向I/O的（会调用内建的操作系统C代码的）程序来说，GIL会在这个I/O调用之前被释放，以允许其他线程在这个线程等待I/O的时候运行。如果某线程并未使用很多I/O操作，它会在自己的时间片内一直占用处理器和GIL。 也就是说，I/O密集型的Python程序比计算密集型的Python程序更能充分利用多线程的好处。我们都知道，比方我有一个4核的CPU，那么这样一来，在单位时间内每个核只能跑一个线程，然后时间片轮转切换。 但是Python不一样，它不管你有几个核，单位时间多个核只能跑一个线程，然后时间片轮转。看起来很不可思议？但是这就是GIL搞的鬼。任何Python线程执行前，必须先获得GIL锁，然后，每执行100条字节码，解释器就自动释放GIL锁， 让别的线程有机会执行。这个GIL全局锁实际上把所有线程的执行代码都给上了锁，所以，多线程在Python中只能交替执行，即使100个线程跑在100核CPU上，也只能用到1个核。通常我们用的解释器是官方实现的CPython，要真正利用多核，除非重写一个不带GIL的解释器。
+二、解决办法 就如此？我们没有办法在Python中利用多核？当然可以！刚才的多进程算是一种解决方案，还有一种就是调用C语言的链接库。对所有面向I/O的（会调用内建的操作系统C代码的）程序来说，GIL会在这个I/O调用之前被释放，以允许其他线程在这个线程等待I/O的时候运行。我们可以把一些 计算密集型任务用C语言编写，然后把.so链接库内容加载到Python中，因为执行C代码，GIL锁会释放，这样一来，就可以做到每个核都跑一个线程的目的！ 可能有的小伙伴不太理解什么是计算密集型任务，什么是I/O密集型任务？
+计算密集型任务的特点是要进行大量的计算，消耗CPU资源，比如计算圆周率、对视频进行高清解码等等，全靠CPU的运算能力。这种计算密集型任务虽然也可以用多任务完成，但是任务越多，花在任务切换的时间就越多，CPU执行任务的效率就越低，所以，要最高效地利用CPU，计算密集型任务同时进行的数量应当等于CPU的核心数。
+计算密集型任务由于主要消耗CPU资源，因此，代码运行效率至关重要。Python这样的脚本语言运行效率很低，完全不适合计算密集型任务。对于计算密集型任务，最好用C语言编写。
+第二种任务的类型是IO密集型，涉及到网络、磁盘IO的任务都是IO密集型任务，这类任务的特点是CPU消耗很少，任务的大部分时间都在等待IO操作完成（因为IO的速度远远低于CPU和内存的速度）。对于IO密集型任务，任务越多，CPU效率越高，但也有一个限度。常见的大部分任务都是IO密集型任务，比如Web应用。
+IO密集型任务执行期间，99%的时间都花在IO上，花在CPU上的时间很少，因此，用运行速度极快的C语言替换用Python这样运行速度极低的脚本语言，完全无法提升运行效率。对于IO密集型任务，最合适的语言就是开发效率最高（代码量最少）的语言，脚本语言是首选，C语言最差。
+综上，Python多线程相当于单核多线程，多线程有两个好处：CPU并行，IO并行，单核多线程相当于自断一臂。所以，在Python中，可以使用多线程，但不要指望能有效利用多核。如果一定要通过多线程利用多核，那只能通过C扩展来实现，不过这样就失去了Python简单易用的特点。不过，也不用过于担心，Python虽然不能利用多线程实现多核任务，但可以通过多进程实现多核任务。多个Python进程有各自独立的GIL锁，互不影响。
+三、其他解释 在我们回过头看下那句经典的话&amp;quot;因为GIL的存在，python的多线程不能利用多核CPU&amp;quot;，这句话很容易让人理解成GIL会让python在一个核心上运行，有了今天的例子我们再来重新理解这句话，GIL的存在让python在同一时刻只能有一个线程在运行，这毋庸置疑，但是它并没有给线程锁死或者说指定只能在某个cpu上运行，另外我需要说明一点的是GIL是与进程对应的，每个进程都有一个GIL。python线程的执行流程我的理解是这样的 线程 ——&amp;gt;抢GIL——&amp;gt;CPU 这种执行流程导致了CPU密集型的多线程程序虽然能够利用多核cpu时跟单核cpu是差不多的，并且由于多个线程抢GIL这个环节导致运行效率&amp;lt;=单线程。看到这可能会让人产生一种错觉，有了GIL后python是线程安全的，好像根本不需要线程锁，而实际情况是线程拿到CPU资源后并不是一直执行的，python解释器在执行了该线程100条字节码(注意是字节码不是代码)时会释放掉该线程的GIL，如果这时候没有加锁那么其他线程就可能修改该线程用到的资源; 另外一个问题是遇到IO也会释放GIL
+最后结论是，因为GIL的存在，python的多线程虽然可以利用多核CPU，但并不能让多个核同时工作。</description>
+    </item>
+    
+    <item>
+      <title>Python Import导入上级目录文件</title>
+      <link>https://reid00.github.io/posts/langs_linux/python-import%E5%AF%BC%E5%85%A5%E4%B8%8A%E7%BA%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:07 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/python-import%E5%AF%BC%E5%85%A5%E4%B8%8A%E7%BA%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/</guid>
+      <description>假设有如下目录结构：
+1 2 3 4 5 6 7 -- dir0 | file1.py | file2.py | dir3 | file3.py | dir4 | file4.py dir0文件夹下有file1.py、file2.py两个文件和dir3、dir4两个子文件夹，dir3中有file3.py文件，dir4中有file4.py文件。
+1.导入同级模块 python导入同级模块（在同一个文件夹中的py文件）直接导入即可。
+1 import xxx 如在file1.py中想导入file2.py，注意无需加后缀&amp;quot;.py&amp;quot;：
+1 2 3 import file2 # 使用file2中函数时需加上前缀&amp;#34;file2.&amp;#34;，即： # file2.fuction_name() 2.导入下级模块 导入下级目录模块也很容易，需在下级目录中新建一个空白的__init__.py文件再导入：
+1 from dirname import xxx 如在file1.py中想导入dir3下的file3.py，首先要在dir3中新建一个空白的__init__.py文件。
+1 2 3 4 5 6 7 8 -- dir0 | file1.py | file2.py | dir3 | __init__.py | file3.py | dir4 | file4.py 再使用如下语句：</description>
+    </item>
+    
+  </channel>
+</rss>

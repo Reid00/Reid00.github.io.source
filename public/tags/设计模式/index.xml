@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:34:54 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Function Option 函数选项模式</title>
+      <link>https://reid00.github.io/posts/langs_linux/go-function-option-%E5%87%BD%E6%95%B0%E9%80%89%E9%A1%B9%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:54 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/go-function-option-%E5%87%BD%E6%95%B0%E9%80%89%E9%A1%B9%E6%A8%A1%E5%BC%8F/</guid>
+      <description>介绍 Go 语言没有构造函数，一般通过定义 New 函数来充当构造函数。然而，如果结构有较多字段，要初始化这些字段，有很多种方式，但有一种方式认为是最好的，这就是函数式选项模式（Functional Options Pattern）。
+函数式选项模式是一种在 Go 中构造结构体的模式，它通过设计一组非常有表现力和灵活的 API 来帮助配置和初始化结构体。
+在 Uber 的 Go 语言规范 中提到了该模式：
+Functional options 是一种模式，在该模式中，你可以声明一个不透明的 Option 类型，该类型在某些内部结构中记录信息。你接受这些可变数量的选项，并根据内部结构上的选项记录的完整信息进行操作。 将此模式用于构造函数和其他公共 API 中的可选参数，你预计这些参数需要扩展，尤其是在这些函数上已经有三个或更多参数的情况下。
+Demo 为了更好的理解该模式，我们通过一个例子来讲解。
+定义一个 Server 结构体
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 package main type Server struct { host string port int } func New(host string, port int) *Server { return &amp;amp;Server{host, port} } func (s *Server) Start() error { } 使用</description>
+    </item>
+    
+  </channel>
+</rss>

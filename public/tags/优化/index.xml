@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>优化 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E4%BC%98%E5%8C%96/</link>
+    <description>Recent content in 优化 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:22 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>机器学习之优化算法</title>
+      <link>https://reid00.github.io/posts/ml/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:22 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/ml/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</guid>
+      <description>在调整模型更新权重和偏差参数的方式时，你是否考虑过哪种优化算法能使模型产生更好且更快的效果？应该用梯度下降，随机梯度下降，还是Adam方法？
+这篇文章介绍了不同优化算法之间的主要区别，以及如何选择最佳的优化方法。
+梯度: 是多元函数对当前给定点，上升最快的方向。梯度是一组向量，所以带有方向;
+梯度下降流程: https://zhuanlan.zhihu.com/p/68468520 w, b 每轮是每个样本的权重梯度向量和偏差梯度向量的平均值；
+梯度下降本质是沿着负梯度值方向寻找损失函数Loss的最小值解 时的参数w,b , 从而得出对样本数据拟合最好的参数w,b。 https://www.jianshu.com/p/c7e642877b0e
+什么是优化算法？ 优化算法的功能，是通过改善训练方式，来最小化(或最大化)损失函数E(x)。
+模型内部有些参数，是用来计算测试集中目标值Y的真实值和预测值的偏差程度的，基于这些参数，就形成了损失函数E(x)。
+比如说，权重(W)和偏差(b)就是这样的内部参数，一般用于计算输出值，在训练神经网络模型时起到主要作用。
+**在有效地训练模型并产生准确结果时，模型的内部参数起到了非常重要的作用。**这也是为什么我们应该用各种优化策略和算法，来更新和计算影响模型训练和模型输出的网络参数，使其逼近或达到最优值。
+优化算法分为两大类：
+1. 一阶优化算法
+这种算法使用各参数的梯度值来最小化或最大化损失函数E(x)。最常用的一阶优化算法是梯度下降。
+函数梯度：导数dy/dx的多变量表达式，用来表示y相对于x的瞬时变化率。往往为了计算多变量函数的导数时，会用梯度取代导数，并使用偏导数来计算梯度。梯度和导数之间的一个主要区别是函数的梯度形成了一个向量场。
+因此，对单变量函数，使用导数来分析；而梯度是基于多变量函数而产生的。更多理论细节在这里不再进行详细解释。
+2. 二阶优化算法
+二阶优化算法使用了二阶导数(也叫做Hessian方法)来最小化或最大化损失函数。由于二阶导数的计算成本很高，所以这种方法并没有广泛使用。
+详解各种神经网络优化算法 梯度下降 在训练和优化智能系统时，梯度下降是一种最重要的技术和基础。梯度下降的功能是：
+通过寻找最小值，控制方差，更新模型参数，最终使模型收敛。
+网络更新参数的公式为：θ=θ−η×∇(θ).J(θ) ，其中η是学习率，∇(θ).J(θ)是损失函数J(θ)的梯度。
+这是在神经网络中最常用的优化算法。
+如今，梯度下降主要用于在神经网络模型中进行权重更新，即在一个方向上更新和调整模型的参数，来最小化损失函数。
+2006年引入的反向传播技术，使得训练深层神经网络成为可能。反向传播技术是先在前向传播中计算输入信号的乘积及其对应的权重，然后将激活函数作用于这些乘积的总和。这种将输入信号转换为输出信号的方式，是一种对复杂非线性函数进行建模的重要手段，并引入了非线性激活函数，使得模型能够学习到几乎任意形式的函数映射。然后，在网络的反向传播过程中回传相关误差，使用梯度下降更新权重值，通过计算误差函数E相对于权重参数W的梯度，在损失函数梯度的相反方向上更新权重参数。
+**图1：**权重更新方向与梯度方向相反 图1显示了权重更新过程与梯度矢量误差的方向相反，其中U形曲线为梯度。要注意到，当权重值W太小或太大时，会存在较大的误差，需要更新和优化权重，使其转化为合适值，所以我们试图在与梯度相反的方向找到一个局部最优值。
+梯度下降的变体 传统的批量梯度下降将计算整个数据集梯度，但只会进行一次更新，因此在处理大型数据集时速度很慢且难以控制，甚至导致内存溢出。
+权重更新的快慢是由学习率η决定的，并且可以在凸面误差曲面中收敛到全局最优值，在非凸曲面中可能趋于局部最优值。
+使用标准形式的批量梯度下降还有一个问题，就是在训练大型数据集时存在冗余的权重更新。
+标准梯度下降的上述问题在随机梯度下降方法中得到了解决。
+1. 随机梯度下降(SDG)
+随机梯度下降（Stochastic gradient descent，SGD）对每个训练样本进行参数更新，每次执行都进行一次更新，且执行速度更快。
+θ=θ−η⋅∇(θ) × J(θ;x(i);y(i))，其中x(i)和y(i)为训练样本。
+频繁的更新使得参数间具有高方差，损失函数会以不同的强度波动。这实际上是一件好事，因为它有助于我们发现新的和可能更优的局部最小值，而标准梯度下降将只会收敛到某个局部最优值。
+但SGD的问题是，由于频繁的更新和波动，最终将收敛到最小限度，并会因波动频繁存在超调量。
+虽然已经表明，当缓慢降低学习率η时，标准梯度下降的收敛模式与SGD的模式相同。
+**图2：**每个训练样本中高方差的参数更新会导致损失函数大幅波动，因此我们可能无法获得给出损失函数的最小值。 另一种称为“小批量梯度下降”的变体，则可以解决高方差的参数更新和不稳定收敛的问题。
+2. 小批量梯度下降
+为了避免SGD和标准梯度下降中存在的问题，一个改进方法为小批量梯度下降（Mini Batch Gradient Descent），因为对每个批次中的n个训练样本，这种方法只执行一次更新。
+使用小批量梯度下降的优点是：
+1) 可以减少参数更新的波动，最终得到效果更好和更稳定的收敛。
+2) 还可以使用最新的深层学习库中通用的矩阵优化方法，使计算小批量数据的梯度更加高效。
+3) 通常来说，小批量样本的大小范围是从50到256，可以根据实际问题而有所不同。</description>
+    </item>
+    
+    <item>
+      <title>MySql索引优化</title>
+      <link>https://reid00.github.io/posts/storage/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:06 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/storage/mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</guid>
+      <description>数据库表结构：
+1 2 3 4 5 6 7 8 9 create table user ( id int primary key, name varchar(20), sex varchar(5), index(name) )engine=innodb; select id,name where name=&amp;#39;shenjian&amp;#39; select id,name,sex where name=&amp;#39;shenjian&amp;#39; 多查询了一个属性，为何检索过程完全不同？
+什么是回表查询？
+什么是索引覆盖？
+如何实现索引覆盖？
+哪些场景，可以利用索引覆盖来优化SQL？
+一、什么是回表查询？ 这先要从InnoDB的索引实现说起，InnoDB有两大类索引：
+聚集索引(clustered index) 普通索引(secondary index) **InnoDB聚集索引和普通索引有什么差异？
+**
+InnoDB聚集索引的叶子节点存储行记录，因此， InnoDB必须要有，且只有一个聚集索引：
+（1）如果表定义了PK，则PK就是聚集索引；
+（2）如果表没有定义PK，则第一个not NULL unique列是聚集索引；
+（3）否则，InnoDB会创建一个隐藏的row-id作为聚集索引；
+画外音：所以PK查询非常快，直接定位行记录。
+InnoDB普通索引的叶子节点存储主键值。
+画外音：注意，不是存储行记录头指针，MyISAM的索引叶子节点存储记录指针。
+举个栗子，不妨设有表：
+t(id PK, name KEY, sex, flag);
+画外音：id是聚集索引，name是普通索引。
+表中有四条记录：
+1, shenjian, m, A
+3, zhangsan, m, A</description>
+    </item>
+    
+    <item>
+      <title>MySql语句优化</title>
+      <link>https://reid00.github.io/posts/storage/mysql%E8%AF%AD%E5%8F%A5%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:05 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/storage/mysql%E8%AF%AD%E5%8F%A5%E4%BC%98%E5%8C%96/</guid>
+      <description>一，SQL语句性能优化 对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。
+应尽量避免在 where 子句中对字段进行 null 值判断，创建表时NULL是默认值，但大多数时候应该使用NOT NULL，或者使用一个特殊的值，如0，-1作为默 认值。
+应尽量避免在 where 子句中使用!=或&amp;lt;&amp;gt;操作符， MySQL只有对以下操作符才使用索引：&amp;lt;，&amp;lt;=，=，&amp;gt;，&amp;gt;=，BETWEEN，IN，以及某些时候的LIKE
+应尽量避免在 where 子句中使用 or 来连接条件， 否则将导致引擎放弃使用索引而进行全表扫描， 可以 使用UNION合并查询： select id from t where num=10 union all select id from t where num=20
+in 和 not in 也要慎用，否则会导致全表扫描，对于连续的数值，能用 between 就不要用 in 了：Select id from t where num between 1 and 3
+下面的查询也将导致全表扫描：select id from t where name like ‘%abc%’ 或者select id from t where name like ‘%abc’若要提高效率，可以考虑全文检索。而select id from t where name like ‘abc%’ 才用到索引</description>
+    </item>
+    
+    <item>
+      <title>Spark 最佳实践指南</title>
+      <link>https://reid00.github.io/posts/computation/spark-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Thu, 16 Mar 2023 19:34:51 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/computation/spark-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</guid>
+      <description>简介 总体上来说，Spark的流程和MapReduce的思想很类似，只是实现的细节方面会有很多差异。 首先澄清2个容易被混淆的概念：
+Spark是基于内存计算的框架 Spark比Hadoop快100倍 第一个问题是个伪命题。 任何程序都需要通过内存来执行，不论是单机程序还是分布式程序。 Spark会被称为 基于内存计算的框架 ，主要原因在于其和之前的分布式计算框架很大不同的一点是，Shuffle的数据集不需要通过读写磁盘来进行交换，而是直接通过内存交换数据得到。效率比读写磁盘的MapReduce高上好多倍，所以很多人称之为 基于内存的计算框架，其实更应该称为 基于内存进行数据交换的计算框架。
+至于第二个问题，有同学说，Spark官网 就是这么介绍的呀，Spark run workloads 100x faster than Hadoop。
+这点没什么问题，但是请注意官网用来比较的 workload 是 Logistic regresstion。 注意到了吗，这是一个需要反复迭代计算的机器学习算法，Spark是非常擅长在这种需要反复迭代计算的场景中（见问题1），而Hadoop MapReduce每次迭代都需要读写一次HDFS。以己之长，击人之短 差距可向而知。
+如果都只是跑一个简单的过滤场景的 workload，那么性能差距不会有这么多，总体上是一个级别的耗时。
+所以千万不要在任何场景中都说 Spark是基于内存的计算、Spark比Hadoop快100倍，这都是不严谨的说法。
+逻辑执行图 1. 弹性分布式数据集 RDD是Spark中的核心概念，直译过来叫做 弹性分布式数据集。
+所有的RDD要么是从外部数据源创建的，要么是从其他RDD转换过来的。RDD有两种产生方式：
+从外部数据源中创建 从一个RDD中转换而来 你可以把它当做一个List，但是这个List里面的元素是分布在不同机器上的，对List的所有操作都将被分发到不同的机器上执行。 RDD就是我们需要操作的数据集，并解决了 数据在哪儿 这个问题。 有了数据之后，我们需要定义在数据集上的操作（即业务逻辑）。 回想一下我们之前经历的流程：
+一开始我们什么都没有，只有分散在各个服务器上的日志数据，并且通过一个简单的脚本遍历连接服务器，执行相关的统计逻辑 我们接触了MapReduce计算框架，并定义了Map和Reduce的函数接口来实现计算逻辑，从而用户不比关心计算逻辑拆分与分发等底层问题 虽然MapReduce已经解决了我们分布式计算的需求，但是其编程范式只有map和reduce两个接口，使用不灵活。
+在Spark中，RDD提供了比MapReduce编程模型丰富得多的编程接口，如：filter、map、groupBy等都可以直接调用实现（这些操作本质上也划分为Map和Reduce两种类型）。
+现在，统计PV的例子中实现计算逻辑的伪代码可以这么写：
+1 2 3 4 5 6 7 8 9 10 // 从外部数据源中创建RDD，即读取日志数据 val rdd = sc.textFile(&amp;#34;...&amp;#34;) // 解析日志中的ip rdd.map(...) // 根据ip分组 .</description>
+    </item>
+    
+  </channel>
+</rss>

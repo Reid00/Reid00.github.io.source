@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>认证 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/categories/%E8%AE%A4%E8%AF%81/</link>
+    <description>Recent content in 认证 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:10 +0800</lastBuildDate><atom:link href="https://reid00.github.io/categories/%E8%AE%A4%E8%AF%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Token Cookie Session区别</title>
+      <link>https://reid00.github.io/posts/os_network/token-cookie-session%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:10 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/os_network/token-cookie-session%E5%8C%BA%E5%88%AB/</guid>
+      <description>在做接口测试时，经常会碰到请求参数为token的类型，但是可能大部分测试人员对token，cookie，session的区别还是一知半解。
+Cookie cookie 是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。
+cookie由服务器生成，发送给浏览器，浏览器把cookie以kv形式保存到某个目录下的文本文件内，下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占据太多磁盘空间，所以每个域的cookie数量是有限的。
+Session session 从字面上讲，就是会话。这个就类似于你和一个人交谈，你怎么知道当前和你交谈的是张三而不是李四呢？对方肯定有某种特征（长相等）表明他就是张三。
+session 也是类似的道理，服务器要知道当前发请求给自己的是谁。为了做这种区分，服务器就要给每个客户端分配不同的“身份标识”，然后客户端每次向服务器发请求的时候，都带上这个“身份标识”，服务器就知道这个请求来自于谁了。至于客户端怎么保存这个“身份标识”，可以有很多种方式，对于浏览器客户端，大家都默认采用 cookie 的方式。
+服务器使用session把用户的信息临时保存在了服务器上，用户离开网站后session会被销毁。这种用户信息存储方式相对cookie来说更安全，可是session有一个缺陷：如果web服务器做了负载均衡，那么下一个操作请求到了另一台服务器的时候session会丢失。
+Token Token的引入：Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。
+Token的定义：Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接token请求服务器)。
+使用Token的目的：Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。
+传统身份验证 HTTP 是一种没有状态的协议，也就是它并不知道是谁是访问应用。这里我们把用户看成是客户端，客户端使用用户名还有密码通过了身份验证，不过下回这个客户端再发送请求时候，还得再验证一下。
+解决的方法就是，当用户请求登录的时候，如果没有问题，我们在服务端生成一条记录，这个记录里可以说明一下登录的用户是谁，然后把这条记录的 ID 号发送给客户端，客户端收到以后把这个 ID 号存储在 Cookie 里，下次这个用户再向服务端发送请求的时候，可以带着这个 Cookie ，这样服务端会验证一个这个 Cookie 里的信息，看看能不能在服务端这里找到对应的记录，如果可以，说明用户已经通过了身份验证，就把用户请求的数据返回给客户端。
+上面说的就是 Session，我们需要在服务端存储为登录的用户生成的 Session ，这些 Session 可能会存储在内存，磁盘，或者数据库里。我们可能需要在服务端定期的去清理过期的 Session 。
+基于 Token 的身份验证 使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：
+客户端使用用户名跟密码请求登录 服务端收到请求，去验证用户名与密码 验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端 客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里 客户端每次向服务端请求资源的时候需要带着服务端签发的 Token 服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据 APP登录的时候发送加密的用户名和密码到服务器，服务器验证用户名和密码，如果成功，以某种方式比如随机生成32位的字符串作为token，存储到服务器中，并返回token到APP，以后APP请求时，凡是需要验证的地方都要带上该token，然后服务器端验证token，成功返回所需要的结果，失败返回错误信息，让他重新登录。其中服务器上token设置一个有效期，每次APP请求的时候都验证token和有效期。
+那么我的问题来了：1.服务器上的token存储到数据库中，每次查询会不会很费时。如果不存储到数据库，应该存储到哪里呢。2.客户端得到的token肯定要加密存储的，发送token的时候再解密。存储到数据库还是配置文件呢？
+token是个易失数据，丢了无非让用户重新登录一下，新浪微博动不动就让我重新登录，反正这事儿我是无所谓啦。 所以如果你觉得普通的数据库表撑不住了，可以放到 MSSQL/MySQL 的内存表里（不过据说mysql的内存表性能提升有限），可以放到 Memcache里（讲真，这个是挺常见的策略），可以放到redis里（我做过这样的实现），甚至可以放到 OpenResty 的变量字典里（只要你有信心不爆内存）。</description>
+    </item>
+    
+  </channel>
+</rss>

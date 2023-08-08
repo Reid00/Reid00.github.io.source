@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>remote on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/remote/</link>
+    <description>Recent content in remote on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:11 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/remote/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vscode远程开发配置</title>
+      <link>https://reid00.github.io/posts/other/vscode%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:11 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/other/vscode%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E9%85%8D%E7%BD%AE/</guid>
+      <description>准备vscode 插件 在vs code的扩展商店中搜索remote-ssh, install 配置remmote-ssh 插件 使用快捷点, ctrl + shift + P 输入config 选择第一个，在.ssh 目录的config文件 按照以下格式配置
+1 2 3 4 5 Host Personal HostName 172.16.1.1 User root Port 22 IdentityFile C:\Users\ld\.ssh\id_rsa Host: 自定义的服务器名称，用于个人区分 HostName: 需要远程的服务器的IP 地址 User: 远程服务器用的账号 Port: 默认ssh 端口22 IdentityFile: 免登录的id_rsa路径 注意: 多次实验加入IdentityFile 都不能做到通过跳板机免密码，最后把客户机的id_rsa.pub添加到target 才免密， 相当于直接可以连接target机器了。
+如果通过跳板机连接服务器 有时候我们需要跳板机来连接服务器，也即先连接一台跳板机服务器，然后通过这台跳板机所在的内网再次跳转到目标服务器。 最简单的做法就是按上述方法连接到跳板机，然后在跳板机的终端用ssh指令跳转到目标服务器，但这样跳转后，我们无法在VScode中打开服务器的文件目录，操作起来很不方便。我们可以把config的设置改成如下，就可以通过c00跳板机跳转到c01了
+1 2 3 4 5 6 Host BackupCluster HostName 1.16.1.1 User root Port 22 ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe -W %h:%p -q Personal IdentityFile C:\Users\ld\.</description>
+    </item>
+    
+  </channel>
+</rss>

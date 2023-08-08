@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>性能检测方法 on Reid&#39;s Blog</title>
+    <link>https://reid00.github.io/tags/%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95/</link>
+    <description>Recent content in 性能检测方法 on Reid&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Mar 2023 19:35:04 +0800</lastBuildDate><atom:link href="https://reid00.github.io/tags/%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux性能检测</title>
+      <link>https://reid00.github.io/posts/langs_linux/linux%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B/</link>
+      <pubDate>Thu, 16 Mar 2023 19:35:04 +0800</pubDate>
+      
+      <guid>https://reid00.github.io/posts/langs_linux/linux%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B/</guid>
+      <description>常见的性能检测工具 TOP top是最常用的Linux性能监测工具之一。通过top工具可以监视进程和系统整体性能。
+常见命令一览 安装方式 系统自带，无需安装
+使用方法 使用top命令统计整体CPU、内存资源消耗。 CPU项：显示当前总的CPU时间使用分布。 us表示用户态程序占用的CPU时间百分比。 sy表示内核态程序所占用的CPU时间百分比。 wa表示等待IO等待占用的CPU时间百分比。 hi表示硬中断所占用的CPU时间百分比。 si表示软中断所占用的CPU时间百分比。 通过这些参数我们可以分析CPU时间的分布，是否有较多的IO等待。在执行完调优步骤后，我们也可以对CPU使用时间进行前后对比。如果在运行相同程序、业务情况下CPU使用时间降低，说明性能有提升。
+KiB Mem：表示服务器的总内存大小以及使用情况。 KiB Swap：表示当前所使用的Swap空间的大小。Swap空间即当内存不足的时候，把一部分硬盘空间虚拟成内存使用。如果当前所使用的Swap空间大于0，可以考虑优化应用的内存占用或增加物理内存。 在top命令执行后按1，查看每个CPU core的使用情况。 通过该命令可以查看单个CPU core的使用情况，如果CPU占用集中在某几个CPU core上，可以结合业务分析触发原因，从而找到优化思路。 选中top命令的P选项，查看线程运行在哪些 CPU core上。 在top命令执行后按F，可以进入top命令管理界面。在该界面通过上下键移动光标到P选项，通过空格键选中后按Esc退出，即可显示出线程运行的CPU核。观察一段时间，若业务线程在不同NUMA节点内的CPU core上运行，则说明存在较多的跨NUMA访问，可通过NUMA绑核进行优化。(top -&amp;gt; F -&amp;gt; up/down -&amp;gt; 空格 -&amp;gt; ESC) 使用top -p $PID -H命令观察进程中每个线程的CPU资源使用。 “-p”后接的参数为待观察的进程ID。通过该命令可以找出消耗资源多的线程，随后可根据线程号分析线程中的热点函数、调用过程等情况。 Perf Perf工具是非常强大的Linux性能分析工具，可以通过该工具获得进程内的调用情况、资源消耗情况并查找分析热点函数。
+常见命令一览 安装方式 centos 为例
+1 yum -y install perf 使用方式 通过perf top命令查找热点函数。 该命令统计各个函数在某个性能事件上的热度，默认显示CPU占用率，可以通过“-e”监控其它事件。 Overhead表示当前事件在全部事件中占的比例。 Shared Object表示当前事件生产者，如kernel、perf命令、C语言库函数等。 Symbol则表示热点事件对应的函数名称。 通过热点函数，我们可以找到消耗资源较多的行为，从而有针对性的进行优化。 收集一段时间内的线程调用. perf sched record命令用于记录一段时间内，进程的调用情况。“-p”后接进程号，“sleep”后接统计时长，单位为秒。收集到的信息自动存放在当前目录下，文件名为perf.data。 解析收集到的线程调度信息。 perf sched latency命令可以解析当前目录下的perf.data文件。“-s”表示进行排序，后接参数“max”表示按照最大延迟时间大小排序。 numactl numactl工具可用于查看当前服务器的NUMA节点配置、状态，可通过该工具将进程绑定到指定CPU core，由指定CPU core来运行对应进程。</description>
+    </item>
+    
+  </channel>
+</rss>
