@@ -54,6 +54,10 @@ outputs:
         - RSS
         - JSON
 
+permalinks:
+  - match: "^/posts/(.*)"
+    page: "/posts/$1/index"
+
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     description: "Reid's Personal Notes -- https://github.com/Reid00"
