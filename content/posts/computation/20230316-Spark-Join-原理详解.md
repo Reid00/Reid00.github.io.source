@@ -31,7 +31,7 @@ cover:
 
 ## 介绍
 Join大致包括三个要素：Join方式、Join条件以及过滤条件。其中过滤条件也可以通过AND语句放在Join条件中。
-![join](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.3auv97qmulk0.webp)
+![join](https://github.com/Reid00/image-host/raw/main/20221216/image.3auv97qmulk0.webp)
 Spark支持的Join 包括:
 - inner join
 - left outer join
@@ -42,7 +42,7 @@ Spark支持的Join 包括:
 
 ## Join 的基本流程
 总体上来说，Join的基本实现流程如下图所示，Spark将参与Join的两张表抽象为流式遍历表(streamIter)和查找表(buildIter)，通常streamIter为大表，buildIter为小表，我们不用担心哪个表为streamIter，哪个表为buildIter，这个spark会根据join语句自动帮我们完成。
-![流程](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.4hvszw2v3nc0.webp)
+![流程](https://github.com/Reid00/image-host/raw/main/20221216/image.4hvszw2v3nc0.webp)
 
 在实际计算时，spark会`基于streamIter`来遍历，每次取出streamIter中的一条记录rowA，根据Join条件计算keyA，然后根据该keyA去buildIter中查找所有满足Join条件(keyB==keyA)的记录rowBs，并将rowBs中每条记录分别与rowAjoin得到join后的记录，最后根据过滤条件得到最终join的记录。
 
@@ -52,7 +52,7 @@ Spark支持的Join 包括:
 spark提供了hash join实现方式，在shuffle read阶段不对记录排序，反正来自两格表的具有相同key的记录会在同一个分区，只是在分区内不排序，将来自buildIter的记录放到hash表中，以便查找，如下图所示。
 
 由于Spark是一个分布式的计算引擎，可以通过分区的形式将大批量的数据划分成n份较小的数据集进行并行计算。这种思想应用到Join上便是Shuffle Hash Join了。利用key相同必然分区相同的这个原理，SparkSQL将较大表的join分而治之，先将表划分成n个分区，在对buildlter查找表和streamlter表进行Hash Join。
-![hasJoin](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.360e1g4bv760.webp)
+![hasJoin](https://github.com/Reid00/image-host/raw/main/20221216/image.360e1g4bv760.webp)
 
 ### Shuffle Hash Join分为两步：
 1. 对两张表分别按照join keys进行重分区，即shuffle，目的是为了让有相同join keys值的记录分到对应的分区中
@@ -68,7 +68,7 @@ spark提供了hash join实现方式，在shuffle read阶段不对记录排序，
 上面介绍的实现对于一定大小的表比较适用，但当两个表都非常大时，显然无论适用哪种都会对计算内存造成很大压力。这是因为join时两者采取的都是hash join，是将一侧的数据完全加载到内存中，使用hash code取join keys值相等的记录进行连接。
 
 要让两条记录能join到一起，首先需要将具有相同key的记录在同一个分区，所以通常来说，需要做一次shuffle，map阶段根据join条件确定每条记录的key，基于该key做shuffle write，将可能join到一起的记录分到同一个分区中，这样在shuffle read阶段就可以将两个表中具有相同key的记录拉到同一个分区处理。前面我们也提到，对于buildIter一定要是查找性能较优的数据结构，通常我们能想到hash表，但是对于一张较大的表来说，不可能将所有记录全部放到hash表中，SparkSQL采用了一种全新的方案来对表进行Join，即Sort Merge Join。这种实现方式不用将一侧数据全部加载后再进行hash join，但需要在join前将数据排序，如下图所示：
-![sortMerge](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.17azw5lad074.webp)
+![sortMerge](https://github.com/Reid00/image-host/raw/main/20221216/image.17azw5lad074.webp)
 
 三个步骤:
 **shuffle阶段**：或者说shuffle write 阶段，将两张大表根据join key进行重新分区，两张表数据会分布到整个集群，以便分布式并行处理
@@ -81,7 +81,7 @@ spark提供了hash join实现方式，在shuffle read阶段不对记录排序，
 
 ## Broadcast Join实现
 为了能具有相同key的记录分到同一个分区，我们通常是做shuffle，而shuffle在Spark中是比较耗时的操作，我们应该尽可能的设计Spark应用使其避免大量的shuffle。。那么如果buildIter是一个非常小的表，那么其实就没有必要大动干戈做shuffle了，直接将buildIter广播到每个计算节点，然后将buildIter放到hash表中，如下图所示。
-![broadcast](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.5v9djh5ouq80.webp)
+![broadcast](https://github.com/Reid00/image-host/raw/main/20221216/image.5v9djh5ouq80.webp)
 
 在执行上，主要可以分为以下两步：
 1. broadcast阶段：将小表广播分发到大表所在的所有主机。分发方式可以有driver分发，或者采用p2p方式。
@@ -110,11 +110,11 @@ SELECT a.id,a.dept,b.age
 FROM a join b 
 ON (a.id = b.id);
 ```
-![Common Join](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.5rzbfv75s340.webp)
+![Common Join](https://github.com/Reid00/image-host/raw/main/20221216/image.5rzbfv75s340.webp)
 
 ### Hive Map Join
 MapJoin通常用于一个很小的表和一个大表进行join的场景，具体小表有多小，由参数hive.mapjoin.smalltable.filesize来决定，默认值为25M。满足条件的话Hive在执行时候会自动转化为MapJoin，或使用hint提示 /*+ mapjoin(table) */执行MapJoin。
-![MapJoin](https://cdn.staticaly.com/gh/Reid00/image-host@main/20221216/image.4sz2rswtp9y0.webp)
+![MapJoin](https://github.com/Reid00/image-host/raw/main/20221216/image.4sz2rswtp9y0.webp)
 
 如上图中的流程，首先Task A在客户端本地执行，负责扫描小表b的数据，将其转换成一个HashTable的数据结构，并写入本地的文件中，之后将该文件加载到DistributeCache中。
 接下来的Task B任务是一个没有Reduce的MapReduce，启动MapTasks扫描大表a，在Map阶段，根据a的每一条记录去和DistributeCache中b表对应的HashTable关联，并直接输出结果，因为没有Reduce，所以有多少个Map Task，就有多少个结果文件。
