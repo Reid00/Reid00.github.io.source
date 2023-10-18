@@ -130,7 +130,7 @@ total 38
 ```
 
 7. 运行 `python -m http.server` 启动一个简单的web 服务, 让后访问 `http://localhost:8000`
-![hello](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230816/image.35alc2e7oya0.png)
+![hello](https://github.com/Reid00/picx-images-hosting/raw/main/20230816/image.35alc2e7oya0.png)
 
 
 # Go 如何使用WASM (未完待续)

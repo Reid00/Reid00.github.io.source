@@ -116,7 +116,7 @@ Reactor 模式是灵活多变的，可以应对不同的业务场景，灵活在
 而 Java 语言实现的是「单 Reactor 单线程」的方案，因为 Java 程序是跑在 Java 虚拟机这个进程上面的，虚拟机中有很多线程，我们写的 Java 程序只是其中的一个线程而已。
 
 我们来看看「单 Reactor 单进程」的方案示意图：
-![single-reactor](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.598qogzgtqo0.png)
+![single-reactor](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.598qogzgtqo0.png)
 
 可以看到进程里有 `Reactor`、`Acceptor`、`Handler` 这三个对象：
 - Reactor 对象的作用是监听和分发事件；
@@ -147,7 +147,7 @@ Redis 是由 C 语言实现的，在 Redis 6.0 版本之前采用的正是「单
 如果要克服「单 Reactor 单线程 / 进程」方案的缺点，那么就需要引入多线程 / 多进程，这样就产生了单 Reactor 多线程 / 多进程的方案。
 
 闻其名不如看其图，先来看看「单 Reactor 多线程」方案的示意图如下：
-![mulit-thread](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.gjffbinbdfc.png)
+![mulit-thread](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.gjffbinbdfc.png)
 
 详细说一下这个方案：
 - Reactor 对象通过 select （IO 多路复用接口） 监听事件，收到事件后通过 dispatch 进行分发，具体分发给 Acceptor 对象还是 Handler 对象，还要看收到的事件类型；
@@ -176,7 +176,7 @@ Redis 是由 C 语言实现的，在 Redis 6.0 版本之前采用的正是「单
 要解决「单 Reactor」的问题，就是将「单 Reactor」实现成「多 Reactor」，这样就产生了第 多 Reactor 多进程 / 线程的方案。
 
 老规矩，闻其名不如看其图。多 Reactor 多进程 / 线程方案的示意图如下（以线程为例）：
-![mulit-reactor](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.6o08dzwxwxs0.png)
+![mulit-reactor](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.6o08dzwxwxs0.png)
 
 方案详细说明如下：
 - 主线程中的 MainReactor 对象通过 select 监控连接建立事件，收到事件后通过 Acceptor 对象中的 accept 获取连接，将新的连接分配给某个子线程；
@@ -202,10 +202,10 @@ Handler 对象通过 read -> 业务处理 -> send 的流程来完成完整的业
 先来看看阻塞 I/O，当用户程序执行 read ，线程会被阻塞，一直等到内核数据准备好，并把数据从内核缓冲区拷贝到应用程序的缓冲区中，当拷贝过程完成，read 才会返回。
 
 注意，`阻塞等待的是「内核数据准备好」和「数据从内核态拷贝到用户态」这两个过程`。过程如下图：
-![b-io](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.6ulq7qy26dw0.png)
+![b-io](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.6ulq7qy26dw0.png)
 
 知道了阻塞 I/O ，来看看非阻塞 I/O，非阻塞的 read 请求在数据未准备好的情况下立即返回，可以继续往下执行，此时应用程序不断轮询内核，直到数据准备好，内核将数据拷贝到应用程序缓冲区，read 调用才可以获取到结果。过程如下图：
-![non-bio](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.5qrw8egv7v40.png)
+![non-bio](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.5qrw8egv7v40.png)
 
 注意，这里最后一次 read 调用，获取数据的过程，是一个`同步`的过程，是需要等待的过程。`这里的同步指的是内核态的数据拷贝到用户程序的缓存区这个过程`。
 
@@ -216,7 +216,7 @@ Handler 对象通过 read -> 业务处理 -> send 的流程来完成完整的业
 而真正的`异步 I/O` 是「内核数据准备好」和「数据从内核态拷贝到用户态」这两个过程都`不用等待`。
 
 当我们发起 aio_read （异步 I/O） 之后，就立即返回，内核自动将数据从内核空间拷贝到用户空间，这个拷贝过程同样是异步的，内核自动完成的，和前面的同步操作不一样，应`用程序并不需要主动发起拷贝动作`。过程如下图：
-![aio](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.3we69ho7lb60.png)
+![aio](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.3we69ho7lb60.png)
 
 举个你去饭堂吃饭的例子，你好比应用程序，饭堂好比操作系统。
 阻塞 I/O 好比，你去饭堂吃饭，但是饭堂的菜还没做好，然后你就一直在那里等啊等，等了好长一段时间终于等到饭堂阿姨把菜端了出来（数据准备的过程），但是你还得继续等阿姨把菜（内核空间）打到你的饭盒里（用户空间），经历完这两个过程，你才可以离开。
@@ -240,7 +240,7 @@ Proactor 正是采用了异步 I/O 技术，所以被称为异步网络模型。
 无论是 Reactor，还是 Proactor，都是一种基于「事件分发」的网络编程模式，`区别在于 Reactor 模式是基于「待完成」的 I/O 事件，而 Proactor 模式则是基于「已完成」的 I/O 事件`。
 
 接下来，一起看看 Proactor 模式的示意图：
-![proactor](https://cdn.staticaly.com/gh/Reid00/picx-images-hosting@master/20230807/image.2m8eai0fy2s0.png)
+![proactor](https://github.com/Reid00/picx-images-hosting/raw/main/20230807/image.2m8eai0fy2s0.png)
 
 介绍一下 Proactor 模式的工作流程：
 - Proactor Initiator 负责创建 Proactor 和 Handler 对象，并将 Proactor 和 Handler 都通过 Asynchronous Operation Processor 注册到内核；

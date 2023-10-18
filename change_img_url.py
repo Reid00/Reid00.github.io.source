@@ -2,10 +2,11 @@ import re
 import os
 
 owner = 'Reid00'
-repo = 'image-host'
+repo = 'picx-images-hosting'
 branch = 'main'
+old_branch = 'master'
 github = f'github.com/{owner}/{repo}/raw/{branch}'
-staticaly = f'cdn.staticaly.com/gh/{owner}/{repo}@{branch}'
+staticaly = f'cdn.staticaly.com/gh/{owner}/{repo}@{old_branch}'
 chinaJsDelivr = f'jsd.cdn.zzko.cn/gh/{owner}/{repo}@{branch}'
 jsDelivr = f'cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}'
 basepath = r'C:\Personal\Reid00.github.io.source\content\posts'
